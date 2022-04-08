@@ -4,9 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 /// A change notifier to switch configurations based on [ApptiveGridEnvironment]
-class ConfigurationChangeNotifier<T>
-    extends ChangeNotifier {
-
+class ConfigurationChangeNotifier<T> extends ChangeNotifier {
   /// Creates a new configuration change notifier for [configurations]
   /// [configurations] must contain an entry with key [environment]. By default [environment] is [ApptiveGridEnvironment.production]
   ConfigurationChangeNotifier({

@@ -32,8 +32,7 @@ void main() {
     test('Default configuration is production', () {
       final configProvider = ConfigurationChangeNotifier(
         configurations: {
-          ApptiveGridEnvironment.production:
-              'productionTest',
+          ApptiveGridEnvironment.production: 'productionTest',
           ApptiveGridEnvironment.beta: 'betaTest',
         },
       );
@@ -60,8 +59,7 @@ void main() {
       setUp(() {
         configProvider = ConfigurationChangeNotifier(
           configurations: {
-            ApptiveGridEnvironment.production:
-                'productionTest',
+            ApptiveGridEnvironment.production: 'productionTest',
             ApptiveGridEnvironment.beta: 'betaTest',
           },
         );
@@ -168,8 +166,7 @@ void main() {
     setUp(() {
       configProvider = ConfigurationChangeNotifier(
         configurations: {
-          ApptiveGridEnvironment.production:
-              'productionTest',
+          ApptiveGridEnvironment.production: 'productionTest',
           ApptiveGridEnvironment.beta: 'betaTest',
         },
       );

@@ -17,6 +17,7 @@ mixin SimpleLoaderMixin<W extends StatefulWidget, D> on State<W> {
 
   /// Function that is called to load data
   Future<D?> loadData();
+
   /// Determines if the data should be automatically loaded in the first run.
   bool get autoLoadIfNull => true;
 

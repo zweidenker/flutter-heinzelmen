@@ -30,12 +30,14 @@ class StageBanner extends StatelessWidget {
 
   /// The color of the Banner
   final Color? color;
+
   /// The TextStyle of the Banner
   final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
-    final environment = context.watch<ConfigurationChangeNotifier>().environment;
+    final environment =
+        context.watch<ConfigurationChangeNotifier>().environment;
     final enableBanner = context.watch<EnableBannerNotifier>().enabled;
     if (environment == ApptiveGridEnvironment.production || !enableBanner) {
       return child;

@@ -12,6 +12,7 @@ class FeatureToggle {
 
   /// The number of taps required to enable a feature
   final int requiredTaps;
+
   /// The duration that is allowed during each tap
   final Duration coolOff;
 
