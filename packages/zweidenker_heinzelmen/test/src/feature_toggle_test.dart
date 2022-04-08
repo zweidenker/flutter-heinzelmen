@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zweidenker_toolbox/src/feature_toggle.dart';
+import 'package:zweidenker_heinzelmen/src/feature_toggle.dart';
 
 void main() {
   test('Insufficient taps returns false', () {

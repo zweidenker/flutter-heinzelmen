@@ -1,7 +1,7 @@
-name: zweidenker_toolbox
+name: zweidenker_heinzelmen
 description: A Flutter Package with useful helpers that are used across Flutter Apps by ZWEIDENKER
 version: 0.0.1
-homepage:
+repository: https://github.com/zweidenker/flutter-heinzelmen/packages/zweidenker_heinzelmen
 
 environment:
   sdk: ">=2.16.2 <3.0.0"

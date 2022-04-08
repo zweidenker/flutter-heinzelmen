@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zweidenker_toolbox/src/simple_loader_mixin.dart';
+import 'package:zweidenker_heinzelmen/src/simple_loader_mixin.dart';
 
 void main() {
   group('Test Mixin', () {

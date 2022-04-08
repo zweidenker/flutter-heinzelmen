@@ -1,7 +1,7 @@
-name: apptivegrid_toolbox
-description: A new Flutter package project.
+name: apptive_grid_heinzelmen
+description: A collection of little helpers for Flutter Apps that use ApptiveGrid.
 version: 0.0.1
-homepage:
+repository: https://github.com/zweidenker/flutter-heinzelmen/packages/apptive_grid_heinzelmen
 
 environment:
   sdk: ">=2.16.2 <3.0.0"

@@ -5,7 +5,7 @@ import 'dart:typed_data';
 
 import 'package:alchemist/alchemist.dart';
 import 'package:apptive_grid_core/apptive_grid_core.dart' hide HttpHeaders;
-import 'package:apptivegrid_toolbox/apptivegrid_toolbox.dart';
+import 'package:apptive_grid_heinzelmen/apptive_grid_heinzelmen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart' show loadAppFonts;

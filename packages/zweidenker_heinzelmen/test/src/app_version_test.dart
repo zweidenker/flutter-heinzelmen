@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:zweidenker_toolbox/zweidenker_toolbox.dart';
+import 'package:zweidenker_heinzelmen/zweidenker_heinzelmen.dart';
 
 void main() {
   setUpAll(() {

@@ -1,5 +1,5 @@
 import 'package:apptive_grid_core/apptive_grid_core.dart';
-import 'package:apptivegrid_toolbox/src/configuration.dart';
+import 'package:apptive_grid_heinzelmen/src/configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
