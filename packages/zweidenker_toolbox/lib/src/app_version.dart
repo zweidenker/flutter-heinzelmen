@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+
+/// Shows the AppVersion String as Major.Minor.Patch.Build Number based on the output of [getVersionInfo]
+class AppVersion extends StatefulWidget {
+  /// Creates a TextWidget to show the output of [getVersionString] with [textStyle]
+  /// During loading the build method will return a [SizedBox]
+  const AppVersion({
+    Key? key,
+    this.textStyle,
+  }) : super(key: key);
+
+  /// TextStyle the Version will be shown with
+  final TextStyle? textStyle;
+
+  @override
+  _AppVersionState createState() => _AppVersionState();
+}
+
+class _AppVersionState extends State<AppVersion> {
+  String? _versionString;
+
+  @override
+  void initState() {
+    super.initState();
+    getVersionInfo().then((version) {
+      _versionString = version;
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_versionString != null) {
+      return Text(
+        _versionString!,
+        style: widget.textStyle,
+      );
+    } else {
+      return const SizedBox();
+    }
+  }
+}
+
+/// Gets the Version Number with an unscrambled Build Number
+/// The scrambling of the version is used bei the ZWEIDENKER CI Pipelines
+/// The generation is:
+/// Major * 100000000 +
+///  Minor * 1000000 +
+///  Patch * 10000 +
+///  uniqueBuildNumber
+///
+/// CI code is here: https://github.com/zweidenker/flutter_workflows/blob/main/.github/scripts/generate_build_number.sh
+Future<String> getVersionInfo() {
+  return PackageInfo.fromPlatform().then((value) {
+    return '${value.version}+${_unscrambleBuildNumber(value)}';
+  });
+}
+
+String _unscrambleBuildNumber(PackageInfo info) {
+  final packagedBuildNumber = int.parse(info.buildNumber);
+
+  // major, minor, patch
+  final versions =
+      info.version.split('.').map<int>((e) => int.parse(e)).toList();
+
+  return (packagedBuildNumber -
+          versions[0] * 100000000 -
+          versions[1] * 1000000 -
+          versions[2] * 10000)
+      .toString();
+}
