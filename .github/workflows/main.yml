@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+      - uses: bluefireteam/melos-action@v1
+
+      - name: Format, Lint, Publishability
+        run: melos run lint:all
+      - name: Run Tests
+        run: melos run test:all_coverage
+      - name: Zweidenker Heinzelmen Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v1
+        with:
+          path: ./packages/zweidenker_heinzelmen/coverage/lcov.info
+      - name: ApptiveGrid Heinzelmen Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v1
+        with:
+          path: ./packages/apptive_grid_heinzelmen/coverage/lcov.info
