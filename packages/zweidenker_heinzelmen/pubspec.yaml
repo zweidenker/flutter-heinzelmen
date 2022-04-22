@@ -10,8 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_browser: ^0.17.1
   package_info_plus: ^1.4.2
   universal_platform: ^1.0.0+1
+  url_launcher: ^6.0.20
 
 dev_dependencies:
   flutter_test:
