@@ -2,6 +2,9 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+export 'package:flutter_web_browser/flutter_web_browser.dart'
+    show CustomTabsOptions, SafariViewControllerOptions;
+
 /// Wrapper class for opening url's inside apps
 class LinkLauncher {
   /// Creates a LinkLauncher
