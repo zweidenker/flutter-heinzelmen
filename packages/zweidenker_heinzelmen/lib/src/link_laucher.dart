@@ -9,7 +9,7 @@ class LinkLauncher {
   const LinkLauncher();
 
   /// Opens an url in a modal style on a mobile device or in a new tap on a web client
-  /// Use [tabsOptions] to customize the Chrome taps on Android
+  /// Use [tabsOptions] to customize the Chrome tabs on Android
   /// Use [safariViewControllerOptions] to customize the SafariController on iOS
   void openWebPage({
     required String url,
