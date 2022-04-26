@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:universal_platform/universal_platform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Wrapper class for opening url's inside apps
@@ -16,7 +15,10 @@ class LinkLauncher {
     CustomTabsOptions? tabsOptions,
     SafariViewControllerOptions? safariViewControllerOptions,
   }) {
-    if (Platform.isAndroid || Platform.isIOS) {
+    if (UniversalPlatform.isDesktopOrWeb) {
+      /// Opens the url in a new tab in the browser
+      launch(url);
+    } else {
       /// Opens an url in a modal style on a mobile device
       FlutterWebBrowser.openWebPage(
         url: url,
@@ -33,9 +35,6 @@ class LinkLauncher {
               modalPresentationStyle: UIModalPresentationStyle.fullScreen,
             ),
       );
-    } else {
-      /// Opens the url in a new tab in the browser
-      launch(url);
     }
   }
 }
