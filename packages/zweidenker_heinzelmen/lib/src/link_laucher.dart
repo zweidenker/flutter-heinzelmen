@@ -13,17 +13,17 @@ class LinkLauncher {
   /// Opens an url in a modal style on a mobile device or in a new tap on a web client
   /// Use [tabsOptions] to customize the Chrome tabs on Android
   /// Use [safariViewControllerOptions] to customize the SafariController on iOS
-  void openWebPage({
+  Future<void> openWebPage({
     required String url,
     CustomTabsOptions? tabsOptions,
     SafariViewControllerOptions? safariViewControllerOptions,
-  }) {
+  }) async {
     if (UniversalPlatform.isDesktopOrWeb) {
       /// Opens the url in a new tab in the browser
-      launch(url);
+      await launch(url);
     } else {
       /// Opens an url in a modal style on a mobile device
-      FlutterWebBrowser.openWebPage(
+      await FlutterWebBrowser.openWebPage(
         url: url,
         customTabsOptions: tabsOptions ??
             const CustomTabsOptions(
