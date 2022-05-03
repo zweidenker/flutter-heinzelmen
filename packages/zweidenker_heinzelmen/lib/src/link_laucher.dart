@@ -11,20 +11,27 @@ class LinkLauncher {
   const LinkLauncher();
 
   /// Opens an url in a modal style on a mobile device or in a new tap on a web client
+  /// if [openExternally] is `true` this will also be launched externally
   /// Use [tabsOptions] to customize the Chrome tabs on Android
   /// Use [safariViewControllerOptions] to customize the SafariController on iOS
   Future<void> openWebPage({
-    required String url,
+    required Uri url,
+    bool openExternally = false,
     CustomTabsOptions? tabsOptions,
     SafariViewControllerOptions? safariViewControllerOptions,
   }) async {
-    if (UniversalPlatform.isDesktopOrWeb) {
+    if (openExternally || UniversalPlatform.isDesktopOrWeb) {
       /// Opens the url in a new tab in the browser
-      await launch(url);
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
+      // coverage:ignore-start
+      // Ignore for Coverage as UniversalPlatform is not testable with a mock
+      // Check https://github.com/gskinnerTeam/flutter-universal-platform/issues/15 for reference
+      // This means that this branch of the if/else can not be properly testable
+
       /// Opens an url in a modal style on a mobile device
       await FlutterWebBrowser.openWebPage(
-        url: url,
+        url: url.toString(),
         customTabsOptions: tabsOptions ??
             const CustomTabsOptions(
               instantAppsEnabled: true,
@@ -38,6 +45,7 @@ class LinkLauncher {
               modalPresentationStyle: UIModalPresentationStyle.fullScreen,
             ),
       );
+      // coverage:ignore-end
     }
   }
 }
