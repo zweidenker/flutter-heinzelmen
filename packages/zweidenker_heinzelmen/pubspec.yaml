@@ -1,6 +1,6 @@
 name: zweidenker_heinzelmen
 description: A Flutter Package with useful helpers that are used across Flutter Apps by ZWEIDENKER
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/zweidenker/flutter-heinzelmen/packages/zweidenker_heinzelmen
 
 environment:
@@ -10,13 +10,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_browser: ^0.17.1
   package_info_plus: ^1.4.2
   universal_platform: ^1.0.0+1
+  url_launcher: ^6.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  mocktail: ^0.3.0
+  plugin_platform_interface: ^2.1.2
+  url_launcher_platform_interface: ^2.0.5
 
 flutter:
 
