@@ -1,3 +1,7 @@
+## 0.0.3 - Fixed Stage Banner
+* Fixed the Stage Banner to work with the generics from the ConfigurationChangeNotifier
+* Upgraded to new ApptiveGrid package version
+
 ## 0.0.2 - Fixed Environment Switch
 * Fixed the Environment Switch to work with the generics from the ConfigurationChangeNotifier
 
