@@ -1,4 +1,4 @@
-## 0.0.3 - Fixed Stage Banner
+## 0.0.3-alpha.1 - Fixed Stage Banner
 * Fixed the Stage Banner to work with the generics from the ConfigurationChangeNotifier
 * Upgraded to new ApptiveGrid package version
 
