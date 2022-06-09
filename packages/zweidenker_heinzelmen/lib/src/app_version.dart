@@ -5,13 +5,13 @@ import 'package:package_info_plus/package_info_plus.dart';
 class AppVersion extends StatefulWidget {
   /// Creates a TextWidget to show the output of [getVersionString] with [textStyle]
   /// During loading the build method will return a [SizedBox]
-  const AppVersion({Key? key, this.textStyle}) : super(key: key);
+  const AppVersion({super.key, this.textStyle});
 
   /// TextStyle the Version will be shown with
   final TextStyle? textStyle;
 
   @override
-  _AppVersionState createState() => _AppVersionState();
+  State<AppVersion> createState() => _AppVersionState();
 }
 
 class _AppVersionState extends State<AppVersion> {

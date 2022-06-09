@@ -144,12 +144,12 @@ void main() {
 
 class StageBannerTestWidget extends StatelessWidget {
   const StageBannerTestWidget({
-    Key? key,
+    super.key,
     required this.environment,
     required this.enabled,
     this.color,
     this.textStyle,
-  }) : super(key: key);
+  });
 
   final ApptiveGridEnvironment environment;
   final bool enabled;

@@ -128,16 +128,16 @@ void main() {
 
 class EntryLoaderTestWidget extends StatefulWidget {
   const EntryLoaderTestWidget({
-    Key? key,
+    super.key,
     required this.loadData,
     this.autoLoadIfNull,
-  }) : super(key: key);
+  });
 
   final Future<String?> Function() loadData;
   final bool? autoLoadIfNull;
 
   @override
-  _EntryLoaderTestWidgetState createState() => _EntryLoaderTestWidgetState();
+  State<EntryLoaderTestWidget> createState() => _EntryLoaderTestWidgetState();
 }
 
 class _EntryLoaderTestWidgetState extends State<EntryLoaderTestWidget>

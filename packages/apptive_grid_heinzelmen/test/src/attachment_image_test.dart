@@ -173,7 +173,7 @@ class _MockHttpClient extends Mock implements HttpClient {
   }
 
   @override
-  set autoUncompress(bool _autoUncompress) {}
+  set autoUncompress(bool autoUncompress) {}
 }
 
 class _MockHttpClientRequest extends Mock implements HttpClientRequest {}

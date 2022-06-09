@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class AttachmentImage extends StatelessWidget {
   /// Creates a new Widget to display [attachment]
   const AttachmentImage({
-    Key? key,
+    super.key,
     required this.attachment,
     this.loadUntil = LoadUntil.full,
     this.loadingWidget,
     this.fit = BoxFit.cover,
     this.errorBuilder,
-  }) : super(key: key);
+  });
 
   /// The [attachment] that should be shown
   final Attachment attachment;
@@ -73,12 +73,11 @@ class AttachmentImage extends StatelessWidget {
 
 class _NetworkImageWithBuilder extends StatelessWidget {
   const _NetworkImageWithBuilder({
-    Key? key,
     required this.url,
     this.loadingWidget,
     this.fit = BoxFit.cover,
     this.errorBuilder,
-  }) : super(key: key);
+  });
 
   final String url;
 

@@ -1,5 +1,6 @@
 ## 0.0.3
 * Fixed the Stage Banner to work with the generics from the ConfigurationChangeNotifier
+* Update to flutter_lints 2 and fix warnings
 
 ## 0.0.3-alpha.1 - Fixed Stage Banner
 * Fixed the Stage Banner to work with the generics from the ConfigurationChangeNotifier

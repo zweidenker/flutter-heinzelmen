@@ -19,11 +19,11 @@ class StageBanner<T> extends StatelessWidget {
   /// It will show the Name of the current environment if [EnableBannerNotifier.enabled] is `true` and [ConfigurationChangeNotifier.environment] is not production
   /// Note this requires that there is a [Provider]<ConfigurationChangeNotifier> and [Provider]<EnableBannerNotifier> in the Widget Tree
   const StageBanner({
-    Key? key,
+    super.key,
     required this.child,
     this.color,
     this.textStyle,
-  }) : super(key: key);
+  });
 
   /// The widget that should be shown as the child
   final Widget child;
