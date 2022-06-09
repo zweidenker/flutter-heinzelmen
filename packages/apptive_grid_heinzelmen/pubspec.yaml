@@ -1,6 +1,6 @@
 name: apptive_grid_heinzelmen
 description: A collection of little helpers for Flutter Apps that use ApptiveGrid.
-version: 0.0.3-alpha.1
+version: 0.0.3
 repository: https://github.com/zweidenker/flutter-heinzelmen/packages/apptive_grid_heinzelmen
 
 environment:
@@ -8,17 +8,17 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  apptive_grid_core: ^0.10.0-alpha.4  
+  apptive_grid_core: ^0.10.0
   flutter:
     sdk: flutter
   intl: ^0.17.0
-  provider: ^6.0.2
+  provider: ^6.0.3
 
 dev_dependencies:
-  alchemist: ^0.3.2
+  alchemist: ^0.3.3
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
   golden_toolkit: ^0.13.0
   mocktail: ^0.3.0
 
