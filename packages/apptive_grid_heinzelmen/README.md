@@ -1,39 +1,72 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# ApptiveGrid Heinzelmen
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+These are little helper heinzelmen to help with the [ApptiveGrid Flutter Packages](https://pub.dev/packages?q=apptive_grid)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+## Attachment Image
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+Display an Attachment Image from ApptiveGrid. This includes loading logic for thumbnails. It also allows to only load thumbnails when the full size image is not needed.
 
 ```dart
-const like = 'sample';
+AttachmentImage(
+  attachment: attachment,
+  loadingWidget: WidgetToShowWhileLoading(),
+  // Only load small and large thumbnail
+  loadUntil: LoadUntil.large,
+),
 ```
 
-## Additional information
+## Configuration Change Notifier
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+Useful to provide different Options based on differen ApptiveGridEnviornments.
+```dart
+_configurationNotifier = ConfigurationChangeNotifier<dynamic>(
+    environment: widget.initialEnvironment,
+    configurations: {
+        ApptiveGridEnvironment.alpha: ApptiveGridEnvironment.alpha,
+        ApptiveGridEnvironment.beta: ApptiveGridEnvironment.beta,
+        ApptiveGridEnvironment.production: ApptiveGridEnvironment.production,
+    },
+);
+
+...
+
+return ChangeNotifierProvider.value(
+  value: _configurationNotifier,
+  child: child,
+);
+```
+
+## Environment Switcher
+A widget which takes Info from a ConfigurationChangeNotifier and displays a dropdown menu button to switch between available Environments.
+
+```dart
+ListTile(
+  title: Text('Environment'),
+  trailing: EnvironmentSwitcher(
+    onChangeEnvironment: (environment) async {
+      await _logout();
+    },
+  ),
+),
+```
+
+## Stage Banner
+A combination of a ChangeNotifier to keep track of the setting and a Banner Widget to show the current Environment as a Banner. Note this will never show a banner on production only on beta and alpha.
+
+```dart
+ChangeNotifierProvider(
+  create: (_) => EnableBannerNotifier.create(() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(PreferencesKeys.enableBanner) ?? true;
+  }),
+  child: child,
+);
+
+...
+
+/// Further down the widget tree
+return StageBanner(
+  child: child,
+);
+
+```
