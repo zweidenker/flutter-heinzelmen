@@ -13,17 +13,17 @@ const TextStyle _kTextStyle = TextStyle(
 );
 
 /// A [Banner] widget indicating the current [ApptiveGridEnvironment]
-/// Note this requires that there is a [Provider]<ConfigurationChangeNotifier> and [Provider]<EnableBannerNotifier> in the Widget Tree
-class StageBanner extends StatelessWidget {
+/// Note this requires that there is a [Provider]<ConfigurationChangeNotifier<T>> and [Provider]<EnableBannerNotifier> in the Widget Tree
+class StageBanner<T> extends StatelessWidget {
   /// Creates a new StageBanner Widget
   /// It will show the Name of the current environment if [EnableBannerNotifier.enabled] is `true` and [ConfigurationChangeNotifier.environment] is not production
   /// Note this requires that there is a [Provider]<ConfigurationChangeNotifier> and [Provider]<EnableBannerNotifier> in the Widget Tree
   const StageBanner({
-    Key? key,
+    super.key,
     required this.child,
     this.color,
     this.textStyle,
-  }) : super(key: key);
+  });
 
   /// The widget that should be shown as the child
   final Widget child;
@@ -37,7 +37,7 @@ class StageBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final environment =
-        context.watch<ConfigurationChangeNotifier>().environment;
+        context.watch<ConfigurationChangeNotifier<T>>().environment;
     final enableBanner = context.watch<EnableBannerNotifier>().enabled;
     if (environment == ApptiveGridEnvironment.production || !enableBanner) {
       return child;
