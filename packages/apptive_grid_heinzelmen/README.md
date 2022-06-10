@@ -68,5 +68,17 @@ ChangeNotifierProvider(
 return StageBanner(
   child: child,
 );
+```
 
+## FormalGermanApptiveGridUserManagementTranslation
+Formal German Translations for ApptiveGridUserManagementTranslations
+to use this instead of the default Strings that address the user with 'DU' add this to the ApptiveGridUserManagement Widget like this
+
+```dart
+ApptiveGridUserManagement(
+    customTranslations: {
+        const Locale.fromSubtags(languageCode: 'de'):
+            FormalGermanApptiveGridUserManagementTranslation(),
+        },
+   ...
 ```
