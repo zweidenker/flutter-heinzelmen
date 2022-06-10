@@ -36,7 +36,7 @@ class FormalGermanApptiveGridUserManagementTranslation
 
   @override
   String get errorConfirm =>
-      'Beim bestätigen des Accounts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+      'Beim Bestätigen des Accounts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
 
   @override
   String get forgotPasswordMessage =>

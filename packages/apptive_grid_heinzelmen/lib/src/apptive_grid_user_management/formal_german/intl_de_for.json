@@ -3,7 +3,7 @@
     "confirmAccountCreation": "Bestätigen Sie Ihren Account",
     "errorLogin": "Beim Login ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     "errorRegister": "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-    "errorConfirm": "Beim bestätigen des Accounts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "errorConfirm": "Beim Bestätigen des Accounts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     "forgotPasswordMessage": "Wir können Ihnen einen Link schicken, mit dem Sie Ihr Passwort zurücksetzen können.",
     "resetPasswordSuccess": "Ihr Passwort wurde erfolgreich zurückgesetzt.",
     "errorUnknown": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
