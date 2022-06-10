@@ -4,6 +4,17 @@
 import 'package:apptive_grid_user_management/src/translation/l10n/translation_de.dart'
     as de;
 
+/// Formal German Translations for ApptiveGridUserManagementTranslations
+/// to use this instead of the default Strings that address the user with 'DU' add this to the ApptiveGridUserManagement Widget like this
+///
+/// ```
+/// ApptiveGridUserManagement(
+///     customTranslations: {
+///         const Locale.fromSubtags(languageCode: 'de'):
+///             FormalGermanApptiveGridUserManagementTranslation(),
+///         },
+///    ...
+/// ```
 class FormalGermanApptiveGridUserManagementTranslation
     extends de.ApptiveGridUserManagementLocalizedTranslation {
   const FormalGermanApptiveGridUserManagementTranslation() : super();

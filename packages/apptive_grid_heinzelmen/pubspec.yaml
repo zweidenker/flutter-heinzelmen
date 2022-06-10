@@ -1,14 +1,22 @@
 name: apptive_grid_heinzelmen
 description: A collection of little helpers for Flutter Apps that use ApptiveGrid.
-version: 0.0.3
+version: 0.0.3+1
 repository: https://github.com/zweidenker/flutter-heinzelmen/packages/apptive_grid_heinzelmen
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
   flutter: ">=1.17.0"
 
+dependency_overrides:
+  apptive_grid_user_management:
+    git:
+      url: https://github.com/apptivegrid/apptive_grid_flutter
+      ref: AC-1596-User-Management-Response-Handling
+      path: packages/apptive_grid_user_management
+
 dependencies:
   apptive_grid_core: ^0.10.0
+  apptive_grid_user_management: ^0.0.5
   flutter:
     sdk: flutter
   intl: ^0.17.0

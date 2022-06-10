@@ -34,8 +34,8 @@ for lang in "de_for"; do
 
   printf "// ignore_for_file: type=lint\n" >"$langFile"
   printf "// coverage:ignore-file\n\n" >>"$langFile"
-  printf "import 'package:apptive_grid_user_management/src/translation/l10n/translation_de.dart'
-              as de;\n\n" >>"$langFile"
+  printf "import 'package:apptive_grid_user_management/src/translation/l10n/translation_de.dart'\n              as de;\n\n" >>"$langFile"
+  printf "/// Formal German Translations for ApptiveGridUserManagementTranslations\n          /// to use this instead of the default Strings that address the user with 'DU' add this to the ApptiveGridUserManagement Widget like this\n          ///\n          /// \`\`\`\n          /// ApptiveGridUserManagement(\n          ///     customTranslations: {\n          ///         const Locale.fromSubtags(languageCode: 'de'):\n          ///             FormalGermanApptiveGridUserManagementTranslation(),\n          ///         },\n          ///    ...\n          /// \`\`\`\n" >>"$langFile"
   printf "class FormalGermanApptiveGridUserManagementTranslation extends de.ApptiveGridUserManagementLocalizedTranslation {\n" >>"$langFile"
   printf "  const FormalGermanApptiveGridUserManagementTranslation() : super();\n" >>"$langFile"
 
