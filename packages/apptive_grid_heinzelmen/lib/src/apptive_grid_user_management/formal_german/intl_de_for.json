@@ -1,0 +1,13 @@
+{
+    "registerWaitingForConfirmation": "Alles klar!\\nWir haben Ihnen eine Mail geschickt, um den Account zu bestätigen.",
+    "confirmAccountCreation": "Bestätigen Sie Ihren Account",
+    "errorLogin": "Beim Login ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "errorRegister": "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "errorConfirm": "Beim bestätigen des Accounts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "forgotPasswordMessage": "Wir können Ihnen einen Link schicken, mit dem Sie Ihr Passwort zurücksetzen können.",
+    "resetPasswordSuccess": "Ihr Passwort wurde erfolgreich zurückgesetzt.",
+    "errorUnknown": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "errorReset": "Passwort konnte nicht zurückgesetzt werden. Bitte versuchen Sie es erneut.",
+    "registerConfirmAddToGroup": "Es existiert bereits ein Account mit der Adresse $email.\\nWir haben Ihnen einen Link geschickt, mit dem Sie bestätigen können, dass Sie den Account für \"$app\" freischalten möchten.\\nIhr Passwort wurde nicht geändert.",
+    "joinGroup": "Ihr Account ist noch nicht für $app freigeschaltet.\\nWollen Sie Ihren Account jetzt freischalten?"
+}

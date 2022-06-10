@@ -34,3 +34,4 @@ build/
 test/**/goldens/**/*.*
 test/**/failures/**/*.*
 !test/**/goldens/ci/*.*
+/tool/poeditor.properties
