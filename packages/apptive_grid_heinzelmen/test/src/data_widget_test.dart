@@ -209,8 +209,8 @@ void main() {
           columns: 1,
           columnWidthBuilder: (_) => const FlexColumnWidth(),
           children: {
-            'Default Stye': null,
-            'Custom': const TextStyle(
+            'Default Style': null,
+            'Custom TextStyle': const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.green,
