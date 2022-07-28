@@ -1,3 +1,8 @@
+## 0.0.4
+* Upgrade to newer ApptiveGrid Versions
+* Add Helper for DataWidget to Display DataEntities
+* Add Helper for ProfilePicture to Display User Profiles with Image and Initials
+
 ## 0.0.3+1
 * Add Helper to export translations for apptive_grid_user_management in formal german
 
