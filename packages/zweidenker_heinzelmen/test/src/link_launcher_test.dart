@@ -12,60 +12,41 @@ void main() {
 
   setUpAll(() {
     UrlLauncherPlatform.instance = mockUrlLauncher;
+    registerFallbackValue(const LaunchOptions());
   });
 
   group('Url Launcher', () {
     test('Calls Url Launcher on Desktop', () async {
       // TODO: Set Universal Explicitly to desktop (https://github.com/gskinnerTeam/flutter-universal-platform/issues/15)
       when(
-        () => mockUrlLauncher.launch(
+        () => mockUrlLauncher.launchUrl(
           testUri.toString(),
-          useSafariVC: any(named: 'useSafariVC'),
-          useWebView: any(named: 'useWebView'),
-          enableJavaScript: any(named: 'enableJavaScript'),
-          enableDomStorage: any(named: 'enableDomStorage'),
-          universalLinksOnly: any(named: 'universalLinksOnly'),
-          headers: any(named: 'headers'),
+          any(),
         ),
       ).thenAnswer((invocation) async => true);
       await linkLauncher.openWebPage(url: testUri);
 
       verify(
-        () => mockUrlLauncher.launch(
+        () => mockUrlLauncher.launchUrl(
           testUri.toString(),
-          useSafariVC: any(named: 'useSafariVC'),
-          useWebView: any(named: 'useWebView'),
-          enableJavaScript: any(named: 'enableJavaScript'),
-          enableDomStorage: any(named: 'enableDomStorage'),
-          universalLinksOnly: any(named: 'universalLinksOnly'),
-          headers: any(named: 'headers'),
+          any(),
         ),
       ).called(1);
     });
 
     test('Open Externally. Calls Url Launcher', () async {
       when(
-        () => mockUrlLauncher.launch(
+        () => mockUrlLauncher.launchUrl(
           testUri.toString(),
-          useSafariVC: any(named: 'useSafariVC'),
-          useWebView: any(named: 'useWebView'),
-          enableJavaScript: any(named: 'enableJavaScript'),
-          enableDomStorage: any(named: 'enableDomStorage'),
-          universalLinksOnly: any(named: 'universalLinksOnly'),
-          headers: any(named: 'headers'),
+          any(),
         ),
       ).thenAnswer((invocation) async => true);
       await linkLauncher.openWebPage(url: testUri, openExternally: true);
 
       verify(
-        () => mockUrlLauncher.launch(
+        () => mockUrlLauncher.launchUrl(
           testUri.toString(),
-          useSafariVC: any(named: 'useSafariVC'),
-          useWebView: any(named: 'useWebView'),
-          enableJavaScript: any(named: 'enableJavaScript'),
-          enableDomStorage: any(named: 'enableDomStorage'),
-          universalLinksOnly: any(named: 'universalLinksOnly'),
-          headers: any(named: 'headers'),
+          any(),
         ),
       ).called(1);
     });
