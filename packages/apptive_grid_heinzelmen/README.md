@@ -82,3 +82,23 @@ ApptiveGridUserManagement(
         },
    ...
 ```
+
+## DataWidget
+
+Show a DataEntity in a format closer to the ApptiveGrid Web UI.
+
+```dart
+const DataWidget(
+  data: dataEntity,
+),
+```
+
+## ProfilePicture
+Show a ProfilePicture for an ApptiveGrid User and show the initials if no image is available.
+
+```dart
+const ProfilePicture({
+    userId: 'userId',
+    name: 'Christian Denker',
+  })
+```
