@@ -1,39 +1,52 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# ZWEIDENKER Heinzelmen
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+These are little helper heinzelmen to help Flutter Development at [ZWEIDENKER](https://zweidenker.com)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+## App Version
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+When building Flutter apps using [ZWEIDENKER's Flutter Workflow](https://github.com/zweidenker/flutter_workflows) the build number is generated based on the version specified in the app's `pubspec.yaml` file like this:
+```
+(major * 100000000) + (minor * 1000000) + (patch * 10000) + buildNumber
 ```
 
-## Additional information
+The `AppVersion` Widget displays the App Version based on the retrieved buildNumber of the above formula and brings it back to the format of `major.minor.patch+build`
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+const AppVersion(
+  style: TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  ),
+),
+```
+
+## Feature Toggle
+The feature toggle is a helper to register taps on a widget and if a certain amount of taps is reached the callback returns true to indicate that a feature can be shown/activated. This is used primarily to display additional settings after tapping on a widget for a certain amount of time
+
+```dart
+const featureToggle = FeatureToggle(
+  requiredTaps: 3,
+  coolOff: const Duration(seconds: 2),
+);
+
+...
+
+GestureDetector(
+    onTap: () {
+      final enabled = featureToggle.registerTap();
+      if (enabled) {
+        setState(() {
+            showFeature = true;
+        });
+      }  
+    },
+    child: const Text('Tap me'),
+)
+```
+
+## Link Launcher
+A simple abstraction layer for launching links. This allows for easier testing, opening links externaly or in a tab view inside the app.
+
+## Simple Loader Mixin
+A mixin to provide simple loading functionality to widgets.
+This provides `loading`, `error` and `data` variables to build UI based on the state
