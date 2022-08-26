@@ -1,3 +1,9 @@
+## 0.1.0+1
+* Fix Import
+
+## 0.1.0
+* Update apptive_grid_theme
+
 ## 0.0.4
 * Upgrade to newer ApptiveGrid Versions
 * Add Helper for DataWidget to Display DataEntities

@@ -1,8 +1,7 @@
 import 'package:apptive_grid_core/apptive_grid_core.dart';
 import 'package:apptive_grid_heinzelmen/src/data_widget/attachment/thumbnail.dart';
 import 'package:apptive_grid_heinzelmen/src/data_widget/profile_picture.dart';
-import 'package:apptive_grid_theme/apptive_grid_colors.dart';
-import 'package:apptive_grid_theme/apptive_grid_icons_icons.dart';
+import 'package:apptive_grid_theme/apptive_grid_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:zweidenker_heinzelmen/zweidenker_heinzelmen.dart';
