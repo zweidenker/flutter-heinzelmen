@@ -4,7 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:alchemist/alchemist.dart';
-import 'package:apptive_grid_core/apptive_grid_core.dart' hide HttpHeaders;
+import 'package:apptive_grid_core/apptive_grid_core.dart';
 import 'package:apptive_grid_heinzelmen/apptive_grid_heinzelmen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
