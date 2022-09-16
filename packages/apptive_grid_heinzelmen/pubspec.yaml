@@ -21,7 +21,7 @@ dependencies:
   zweidenker_heinzelmen: ^0.0.2+1
 
 dev_dependencies:
-  alchemist: ^0.4.1
+  alchemist: ^0.5.0
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
