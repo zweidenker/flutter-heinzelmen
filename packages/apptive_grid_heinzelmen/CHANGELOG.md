@@ -1,3 +1,6 @@
+## 0.2.0
+* Update apptive_grid_core to 0.13.0 and apptive_grid_usermanagement to 0.2.0
+
 ## 0.1.0+1
 * Fix Import
 
