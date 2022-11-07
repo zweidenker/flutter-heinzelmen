@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:apptive_grid_core/apptive_grid_core.dart';
 import 'package:apptive_grid_heinzelmen/apptive_grid_heinzelmen.dart';
@@ -129,6 +131,61 @@ void main() {
                     type: 'application/pdf',
                   ),
                 ]),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    goldenTest(
+      'Signature Thumbnails',
+      fileName: 'data-widget-signature',
+      constraints: const BoxConstraints(maxWidth: 400),
+      pumpBeforeTest: precacheImages,
+      pumpWidget: (tester, widget) async {
+        await mockNetworkImages(
+          () async {
+            await tester.pumpWidget(widget);
+            await tester.pumpAndSettle();
+          },
+          images: {
+            Uri.parse('https://attachment.svg'): base64Decode(
+              '''PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI5MS42NjY2NzE3NTI5Mjk3IiBoZWlnaHQ9IjExMi4zMzMzMjgyNDcwNzAzMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0iIzAwMDAwMCI+CjxjaXJjbGUgY3g9IjU2Ljg4MTkxNDI5NzA3NDMxIiBjeT0iMTYuNTIwMDAwMDA4MzcwNTM4IiByPSI0LjYzNTE0NTUyMDEyNTY3NCIgLz4KPC9nPgo8L3N2Zz4=''',
+            ),
+          },
+        );
+      },
+      builder: () {
+        return DataWidget(
+          data: SignatureDataEntity(
+            Attachment(
+              name: 'Signature',
+              url: Uri.parse('https://attachment.svg'),
+              type: 'image/svg+xml',
+            ),
+          ),
+        );
+        return GoldenTestGroup(
+          columns: 2,
+          columnWidthBuilder: (_) => const FixedColumnWidth(200),
+          children: [
+            GoldenTestScenario(
+              name: 'Filled',
+              child: DataWidget(
+                data: SignatureDataEntity(
+                  Attachment(
+                    name: 'Signature',
+                    url: Uri.parse('https://attachment.svg'),
+                    type: 'image/svg+xml',
+                  ),
+                ),
+              ),
+            ),
+            GoldenTestScenario(
+              name: 'Empty',
+              child: DataWidget(
+                data: SignatureDataEntity(),
               ),
             ),
           ],

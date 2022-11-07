@@ -3,7 +3,6 @@ import 'package:apptive_grid_heinzelmen/src/data_widget/attachment/thumbnail.dar
 import 'package:apptive_grid_heinzelmen/src/data_widget/profile_picture.dart';
 import 'package:apptive_grid_theme/apptive_grid_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:zweidenker_heinzelmen/zweidenker_heinzelmen.dart';
 
@@ -297,9 +296,8 @@ class DataWidget extends StatelessWidget {
     }
 
     if (data is SignatureDataEntity) {
-      return SizedBox(
-        width: 200,
-        height: 100,
+      return AspectRatio(
+        aspectRatio: 2,
         child: data.value != null
             ? Thumbnail(attachment: data.value)
             : const Center(
