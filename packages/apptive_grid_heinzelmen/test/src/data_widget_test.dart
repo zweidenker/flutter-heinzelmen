@@ -369,7 +369,7 @@ void main() {
                       break;
                     case DataType.signature:
                       data = SignatureDataEntity(
-                        /// Using png here, since FlutterSvg doesn't have a fallback value and always throws an error
+                        // Using png here, since FlutterSvg doesn't have a fallback value and always throws an error
                         Attachment(
                           name: 'Attachment',
                           url: Uri.parse('https://attachment.svg'),

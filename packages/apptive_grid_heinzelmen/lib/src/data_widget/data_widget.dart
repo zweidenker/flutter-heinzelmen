@@ -298,13 +298,7 @@ class DataWidget extends StatelessWidget {
     if (data is SignatureDataEntity) {
       return AspectRatio(
         aspectRatio: 2,
-        child: data.value != null
-            ? Thumbnail(attachment: data.value)
-            : const Center(
-                child: Icon(
-                  Icons.draw_outlined,
-                ),
-              ),
+        child:Thumbnail(attachment: data.value),
       );
     }
 
