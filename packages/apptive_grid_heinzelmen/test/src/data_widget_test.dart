@@ -166,30 +166,6 @@ void main() {
             ),
           ),
         );
-        return GoldenTestGroup(
-          columns: 2,
-          columnWidthBuilder: (_) => const FixedColumnWidth(200),
-          children: [
-            GoldenTestScenario(
-              name: 'Filled',
-              child: DataWidget(
-                data: SignatureDataEntity(
-                  Attachment(
-                    name: 'Signature',
-                    url: Uri.parse('https://attachment.svg'),
-                    type: 'image/svg+xml',
-                  ),
-                ),
-              ),
-            ),
-            GoldenTestScenario(
-              name: 'Empty',
-              child: DataWidget(
-                data: SignatureDataEntity(),
-              ),
-            ),
-          ],
-        );
       },
     );
 
