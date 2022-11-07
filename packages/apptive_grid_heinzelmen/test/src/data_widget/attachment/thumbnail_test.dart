@@ -45,7 +45,7 @@ void main() {
           height: 70,
           child: Thumbnail(
             attachment: Attachment(
-              name: 'svg',
+              name: 'png',
               url: Uri.parse('https://image.com/uri'),
               type: 'image/png',
             ),
@@ -73,7 +73,7 @@ void main() {
             height: 70,
             child: Thumbnail(
               attachment: Attachment(
-                name: 'svg',
+                name: 'png',
                 url: Uri(path: '/uri'),
                 type: 'image/png',
               ),
@@ -98,7 +98,7 @@ void main() {
             height: 70,
             child: Thumbnail(
               attachment: Attachment(
-                name: 'svg',
+                name: 'png',
                 url: Uri(path: '/uri'),
                 largeThumbnail: Uri(path: '/largeThumbnailUri'),
                 type: 'image/png',
@@ -124,7 +124,7 @@ void main() {
             height: 70,
             child: Thumbnail(
               attachment: Attachment(
-                name: 'svg',
+                name: 'png',
                 url: Uri(path: '/uri'),
                 largeThumbnail: Uri(path: '/largeThumbnailUri'),
                 smallThumbnail: Uri(path: '/smallThumbnailUri'),
@@ -146,8 +146,9 @@ void main() {
 
   group('SVG Images', () {
     testWidgets('Shows image from url', (tester) async {
+      const uri = 'https://attachment.svg';
       await mockNetworkImages(images: {
-        Uri.parse('https://image.com/uri'): base64Decode(
+        Uri.parse(uri): base64Decode(
           '''PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyI+CjxwYXRoIGZpbGw9IiMwRkZGMDAiIHN0cm9rZT0iIzBGMEYwMCIgc3Ryb2tlLXdpZHRoPSIwIiBkPSJtNCw0djloOVY0eiIvPgo8L3N2Zz4=''',
         ),
       }, () async {
@@ -158,8 +159,8 @@ void main() {
             child: Thumbnail(
               attachment: Attachment(
                 name: 'svg',
-                url: Uri.parse('https://image.com/uri'),
-                type: 'image/svg',
+                url: Uri.parse(uri),
+                type: 'image/svg+xml',
               ),
             ),
           ),
@@ -171,13 +172,14 @@ void main() {
             ((find.byType(SvgPicture).evaluate().first.widget as SvgPicture)
                     .pictureProvider as NetworkPicture)
                 .url;
-        expect(imageUrl, 'https://image.com/uri');
+        expect(imageUrl, uri);
       });
     });
 
-    testWidgets('Shows image from large thumbnail', (tester) async {
+    testWidgets('Ingores thumbnail', (tester) async {
+      const uri = 'https://attachment.svg2';
       await mockNetworkImages(images: {
-        Uri.parse('https://image.com/largeThumbnailUri'): base64Decode(
+        Uri.parse(uri): base64Decode(
           '''PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyI+CjxwYXRoIGZpbGw9IiMwRkZGMDAiIHN0cm9rZT0iIzBGMEYwMCIgc3Ryb2tlLXdpZHRoPSIwIiBkPSJtNCw0djloOVY0eiIvPgo8L3N2Zz4=''',
         ),
       }, () async {
@@ -188,43 +190,12 @@ void main() {
             child: Thumbnail(
               attachment: Attachment(
                 name: 'svg',
-                url: Uri(path: '/uri'),
+                url: Uri.parse(uri),
                 largeThumbnail:
                     Uri.parse('https://image.com/largeThumbnailUri'),
-                type: 'image/svg',
-              ),
-            ),
-          ),
-        );
-
-        await tester.pumpWidget(target);
-
-        final imageUrl =
-            ((find.byType(SvgPicture).evaluate().first.widget as SvgPicture)
-                    .pictureProvider as NetworkPicture)
-                .url;
-        expect(imageUrl, 'https://image.com/largeThumbnailUri');
-      });
-    });
-
-    testWidgets('Shows image from small thumbnail', (tester) async {
-      await mockNetworkImages(images: {
-        Uri.parse('https://image.com/smallThumbnailUri'): base64Decode(
-          '''PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyI+CjxwYXRoIGZpbGw9IiMwRkZGMDAiIHN0cm9rZT0iIzBGMEYwMCIgc3Ryb2tlLXdpZHRoPSIwIiBkPSJtNCw0djloOVY0eiIvPgo8L3N2Zz4=''',
-        ),
-      }, () async {
-        final target = MaterialApp(
-          home: SizedBox(
-            width: 70,
-            height: 70,
-            child: Thumbnail(
-              attachment: Attachment(
-                name: 'svg',
-                url: Uri(path: '/uri'),
-                largeThumbnail: Uri(path: '/largeThumbnailUri'),
                 smallThumbnail:
                     Uri.parse('https://image.com/smallThumbnailUri'),
-                type: 'image/svg',
+                type: 'image/svg+xml',
               ),
             ),
           ),
@@ -236,7 +207,7 @@ void main() {
             ((find.byType(SvgPicture).evaluate().first.widget as SvgPicture)
                     .pictureProvider as NetworkPicture)
                 .url;
-        expect(imageUrl, 'https://image.com/smallThumbnailUri');
+        expect(imageUrl, uri);
       });
     });
   });

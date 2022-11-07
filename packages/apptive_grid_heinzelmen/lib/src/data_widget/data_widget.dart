@@ -259,6 +259,49 @@ class DataWidget extends StatelessWidget {
       );
     }
 
+    if (data is PhoneNumberDataEntity) {
+      return InkWell(
+        onTap: () {
+          (linkLauncher ?? const LinkLauncher()).openWebPage(
+            url: Uri.parse('tel:${data.value}'),
+            openExternally: true,
+          );
+        },
+        child: Text(
+          data.value.toString(),
+          style: (textStyle ?? const TextStyle()).copyWith(
+            color: Theme.of(context).primaryColor,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+      );
+    }
+
+    if (data is EmailDataEntity) {
+      return InkWell(
+        onTap: () {
+          (linkLauncher ?? const LinkLauncher()).openWebPage(
+            url: Uri.parse('mailto:${data.value}'),
+            openExternally: true,
+          );
+        },
+        child: Text(
+          data.value.toString(),
+          style: (textStyle ?? const TextStyle()).copyWith(
+            color: Theme.of(context).primaryColor,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+      );
+    }
+
+    if (data is SignatureDataEntity) {
+      return AspectRatio(
+        aspectRatio: 2,
+        child: Thumbnail(attachment: data.value),
+      );
+    }
+
     return Text(
       data.value.toString(),
       style: textStyle,

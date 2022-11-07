@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:alchemist/alchemist.dart';
 import 'package:apptive_grid_core/apptive_grid_core.dart';
 import 'package:apptive_grid_heinzelmen/apptive_grid_heinzelmen.dart';
@@ -132,6 +134,37 @@ void main() {
               ),
             ),
           ],
+        );
+      },
+    );
+
+    goldenTest(
+      'Signature Thumbnails',
+      fileName: 'data-widget-signature',
+      constraints: const BoxConstraints(maxWidth: 400),
+      pumpBeforeTest: precacheImages,
+      pumpWidget: (tester, widget) async {
+        await mockNetworkImages(
+          () async {
+            await tester.pumpWidget(widget);
+            await tester.pumpAndSettle();
+          },
+          images: {
+            Uri.parse('https://attachment.svg'): base64Decode(
+              '''PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI5MS42NjY2NzE3NTI5Mjk3IiBoZWlnaHQ9IjExMi4zMzMzMjgyNDcwNzAzMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0iIzAwMDAwMCI+CjxjaXJjbGUgY3g9IjU2Ljg4MTkxNDI5NzA3NDMxIiBjeT0iMTYuNTIwMDAwMDA4MzcwNTM4IiByPSI0LjYzNTE0NTUyMDEyNTY3NCIgLz4KPC9nPgo8L3N2Zz4=''',
+            ),
+          },
+        );
+      },
+      builder: () {
+        return DataWidget(
+          data: SignatureDataEntity(
+            Attachment(
+              name: 'Signature',
+              url: Uri.parse('https://attachment.svg'),
+              type: 'image/svg+xml',
+            ),
+          ),
         );
       },
     );
@@ -328,6 +361,23 @@ void main() {
                     case DataType.uri:
                       data = UriDataEntity(Uri.parse('https://uri.uri'));
                       break;
+                    case DataType.phoneNumber:
+                      data = PhoneNumberDataEntity('+12345678');
+                      break;
+                    case DataType.email:
+                      data = PhoneNumberDataEntity('test@test.de');
+                      break;
+                    case DataType.signature:
+                      data = SignatureDataEntity(
+                        // Using png here, since FlutterSvg doesn't have a fallback value and always throws an error
+                        Attachment(
+                          name: 'Attachment',
+                          url: Uri.parse('https://attachment.svg'),
+                          type: 'image/png',
+                        ),
+                      );
+
+                      break;
                   }
 
                   return GoldenTestScenario(
@@ -499,6 +549,54 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(uri.toString()));
+      await tester.pumpAndSettle();
+
+      verify(() => launcher.openWebPage(url: uri, openExternally: true))
+          .called(1);
+    });
+    testWidgets('Phonenumber Data Entity Launches', (tester) async {
+      const phoneNumber = '+123456';
+      final uri = Uri.parse('tel:$phoneNumber');
+      final launcher = MockLinkLauncher();
+      when(() => launcher.openWebPage(url: uri, openExternally: true))
+          .thenAnswer((_) => Future.value());
+      final target = MaterialApp(
+        home: Material(
+          child: DataWidget(
+            data: PhoneNumberDataEntity(phoneNumber),
+            linkLauncher: launcher,
+          ),
+        ),
+      );
+
+      await tester.pumpWidget(target);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(phoneNumber));
+      await tester.pumpAndSettle();
+
+      verify(() => launcher.openWebPage(url: uri, openExternally: true))
+          .called(1);
+    });
+    testWidgets('EmailDataEntity Data Entity Launches', (tester) async {
+      const email = 'test@test.de';
+      final uri = Uri.parse('mailto:$email');
+      final launcher = MockLinkLauncher();
+      when(() => launcher.openWebPage(url: uri, openExternally: true))
+          .thenAnswer((_) => Future.value());
+      final target = MaterialApp(
+        home: Material(
+          child: DataWidget(
+            data: EmailDataEntity(email),
+            linkLauncher: launcher,
+          ),
+        ),
+      );
+
+      await tester.pumpWidget(target);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(email));
       await tester.pumpAndSettle();
 
       verify(() => launcher.openWebPage(url: uri, openExternally: true))
