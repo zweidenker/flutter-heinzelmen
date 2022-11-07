@@ -20,17 +20,20 @@ class Thumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fallback = Center(
+      child: SizedBox(
+        height: 24,
+        width: 24,
+        child: _FileIcon(type: attachment.type),
+      ),
+    );
+
     // svg Pictures
     if (attachment.type.contains('svg')) {
       return SvgPicture.network(
-        (attachment.smallThumbnail ??
-                attachment.largeThumbnail ??
-                attachment.url)
-            .toString(),
-        fit: BoxFit.cover,
-        placeholderBuilder: (_) {
-          return _FileIcon(type: attachment.type);
-        },
+        attachment.url.toString(),
+        fit: BoxFit.contain,
+        placeholderBuilder: (_) => fallback,
       );
     }
 
@@ -42,21 +45,14 @@ class Thumbnail extends StatelessWidget {
                 attachment.url)
             .toString(),
         fit: BoxFit.contain,
-        frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-          if (frame == null) {
-            return _FileIcon(type: attachment.type);
-          } else {
-            return child;
-          }
-        },
-        errorBuilder: (_, __, ___) {
-          return _FileIcon(type: attachment.type);
-        },
+        frameBuilder: (context, child, frame, wasSynchronouslyLoaded) =>
+            frame == null ? fallback : child,
+        errorBuilder: (_, __, ___) => fallback,
       );
     }
 
     // Other Files
-    return _FileIcon(type: attachment.type);
+    return fallback;
   }
 }
 

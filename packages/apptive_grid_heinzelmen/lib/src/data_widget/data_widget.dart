@@ -3,6 +3,7 @@ import 'package:apptive_grid_heinzelmen/src/data_widget/attachment/thumbnail.dar
 import 'package:apptive_grid_heinzelmen/src/data_widget/profile_picture.dart';
 import 'package:apptive_grid_theme/apptive_grid_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:zweidenker_heinzelmen/zweidenker_heinzelmen.dart';
 
@@ -256,6 +257,56 @@ class DataWidget extends StatelessWidget {
             decoration: TextDecoration.underline,
           ),
         ),
+      );
+    }
+
+    if (data is PhoneNumberDataEntity) {
+      return InkWell(
+        onTap: () {
+          (linkLauncher ?? const LinkLauncher()).openWebPage(
+            url: Uri.parse('tel:${data.value}'),
+            openExternally: true,
+          );
+        },
+        child: Text(
+          data.value.toString(),
+          style: (textStyle ?? const TextStyle()).copyWith(
+            color: Theme.of(context).primaryColor,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+      );
+    }
+
+    if (data is EmailDataEntity) {
+      return InkWell(
+        onTap: () {
+          (linkLauncher ?? const LinkLauncher()).openWebPage(
+            url: Uri.parse('mailto:${data.value}'),
+            openExternally: true,
+          );
+        },
+        child: Text(
+          data.value.toString(),
+          style: (textStyle ?? const TextStyle()).copyWith(
+            color: Theme.of(context).primaryColor,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+      );
+    }
+
+    if (data is SignatureDataEntity) {
+      return SizedBox(
+        width: 200,
+        height: 100,
+        child: data.value != null
+            ? Thumbnail(attachment: data.value)
+            : const Center(
+                child: Icon(
+                  Icons.draw_outlined,
+                ),
+              ),
       );
     }
 
