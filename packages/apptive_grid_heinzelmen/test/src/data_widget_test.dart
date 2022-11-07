@@ -328,6 +328,23 @@ void main() {
                     case DataType.uri:
                       data = UriDataEntity(Uri.parse('https://uri.uri'));
                       break;
+                    case DataType.phoneNumber:
+                      data = PhoneNumberDataEntity('+12345678');
+                      break;
+                    case DataType.email:
+                      data = PhoneNumberDataEntity('test@test.de');
+                      break;
+                    case DataType.signature:
+                      data = SignatureDataEntity(
+                        /// Using png here, since FlutterSvg doesn't have a fallback value and always throws an error
+                        Attachment(
+                          name: 'Attachment',
+                          url: Uri.parse('https://attachment.svg'),
+                          type: 'image/png',
+                        ),
+                      );
+
+                      break;
                   }
 
                   return GoldenTestScenario(
@@ -499,6 +516,54 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(uri.toString()));
+      await tester.pumpAndSettle();
+
+      verify(() => launcher.openWebPage(url: uri, openExternally: true))
+          .called(1);
+    });
+    testWidgets('Phonenumber Data Entity Launches', (tester) async {
+      const phoneNumber = '+123456';
+      final uri = Uri.parse('tel:$phoneNumber');
+      final launcher = MockLinkLauncher();
+      when(() => launcher.openWebPage(url: uri, openExternally: true))
+          .thenAnswer((_) => Future.value());
+      final target = MaterialApp(
+        home: Material(
+          child: DataWidget(
+            data: PhoneNumberDataEntity(phoneNumber),
+            linkLauncher: launcher,
+          ),
+        ),
+      );
+
+      await tester.pumpWidget(target);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(phoneNumber));
+      await tester.pumpAndSettle();
+
+      verify(() => launcher.openWebPage(url: uri, openExternally: true))
+          .called(1);
+    });
+    testWidgets('EmailDataEntity Data Entity Launches', (tester) async {
+      const email = 'test@test.de';
+      final uri = Uri.parse('mailto:$email');
+      final launcher = MockLinkLauncher();
+      when(() => launcher.openWebPage(url: uri, openExternally: true))
+          .thenAnswer((_) => Future.value());
+      final target = MaterialApp(
+        home: Material(
+          child: DataWidget(
+            data: EmailDataEntity(email),
+            linkLauncher: launcher,
+          ),
+        ),
+      );
+
+      await tester.pumpWidget(target);
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(email));
       await tester.pumpAndSettle();
 
       verify(() => launcher.openWebPage(url: uri, openExternally: true))
