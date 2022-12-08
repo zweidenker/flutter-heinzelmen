@@ -1,3 +1,6 @@
+## 0.3.0
+* Update apptive_grid_core to 0.14.0 and apptive_grid_usermanagement to 0.3.0
+
 ## 0.2.1
 * Added support for email, phone number and signature types to DataWidget
 
