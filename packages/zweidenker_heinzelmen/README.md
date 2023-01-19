@@ -46,6 +46,11 @@ GestureDetector(
 
 ## Link Launcher
 A simple abstraction layer for launching links. This allows for easier testing, opening links externaly or in a tab view inside the app.
+If you use `checkTrackingPermission` on iOS you need to declare the usage of `NSUserTrackingUsageDescription` in your Info.plist
+```plist
+<key>NSUserTrackingUsageDescription</key>
+<string>This website uses cookies to make the experience user-friendly and effective.</string>
+```
 
 ## Simple Loader Mixin
 A mixin to provide simple loading functionality to widgets.
