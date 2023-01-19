@@ -261,6 +261,7 @@ void main() {
                       data = StringDataEntity('String');
                       break;
                     case DataType.dateTime:
+                    case DataType.createdAt:
                       data = DateTimeDataEntity(DateTime(2022, 7, 28, 10, 17));
                       break;
                     case DataType.date:

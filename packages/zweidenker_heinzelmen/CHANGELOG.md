@@ -1,3 +1,6 @@
+## 0.0.3
+* Add `checkTrackingPermission` to LinkLauncher
+
 ## 0.0.2+1
 * Update to flutter_lints 2 and fix warnings
 
