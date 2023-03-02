@@ -1,6 +1,6 @@
 name: apptive_grid_heinzelmen
 description: A collection of little helpers for Flutter Apps that use ApptiveGrid.
-version: 0.3.0
+version: 0.4.0
 homepage: https://www.apptivegrid.de
 repository: https://github.com/zweidenker/flutter-heinzelmen/packages/apptive_grid_heinzelmen
 
@@ -9,8 +9,8 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  apptive_grid_core: ^0.14.0
-  apptive_grid_user_management: ^0.3.0
+  apptive_grid_core: ^0.15.0
+  apptive_grid_user_management: ^0.4.0
   apptive_grid_theme: ^0.3.0
   flutter:
     sdk: flutter
@@ -18,10 +18,10 @@ dependencies:
   intl: ^0.17.0
   provider: ^6.0.3
   universal_file: ^1.0.0
-  zweidenker_heinzelmen: ^0.0.2+1
+  zweidenker_heinzelmen: ^0.0.3
 
 dev_dependencies:
-  alchemist: ^0.5.0
+  alchemist: ^0.6.0
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1

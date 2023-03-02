@@ -1,3 +1,6 @@
+## 0.4.0
+* Update apptive_grid_core to 0.15.0 and apptive_grid_usermanagement to 0.4.0
+
 ## 0.3.0
 * Update apptive_grid_core to 0.14.0 and apptive_grid_usermanagement to 0.3.0
 
