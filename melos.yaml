@@ -18,7 +18,7 @@ scripts:
     run: |
       melos exec -c 5 -- \
         "dart pub publish --dry-run"
-    select-package:
+    packageFilters:
       ignore: "*example*"
       no-private: true
 
@@ -34,8 +34,8 @@ scripts:
     run: |
       melos exec -c 1 -- \
         "mkdir -p test_results && flutter test --machine --no-pub | tojunit -o MELOS_PACKAGE_PATH/test_results/output.xml"
-    select-package:
-      dir-exists:
+    packageFilters:
+      dirExists:
         - test
       ignore:
         - "*example*"
@@ -48,16 +48,16 @@ scripts:
     run: |
       melos exec -c 1 -- \
         "mkdir -p test_results && flutter test --no-pub"
-    select-package:
-      dir-exists:
+    packageFilters:
+      dirExists:
         - test/goldenFiles
 
   test:coverage:
     run: |
       melos exec -c 1 -- \
         "mkdir -p coverage && flutter test --coverage"
-    select-package:
-      dir-exists:
+    packageFilters:
+      dirExists:
         - test
       ignore:
         - "*example*"

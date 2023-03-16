@@ -30,3 +30,10 @@
 .packages
 build/
 /coverage/
+
+# Ignore non-CI golden files and failures
+test/**/goldens/**/*.*
+test/**/failures/**/*.*
+!test/**/goldens/ci/*.*
+
+pubspec_overrides.yaml

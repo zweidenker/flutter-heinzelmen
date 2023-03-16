@@ -34,3 +34,5 @@ build/
 test/**/goldens/**/*.*
 test/**/failures/**/*.*
 !test/**/goldens/ci/*.*
+
+pubspec_overrides.yaml
