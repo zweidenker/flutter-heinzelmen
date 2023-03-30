@@ -177,7 +177,6 @@ class _InvitationDialogContent extends StatelessWidget {
                     selectedItemBuilder: (_) => allowedRoles
                         .map(
                           (role) => ListTile(
-                            horizontalTitleGap: 0,
                             contentPadding: EdgeInsets.zero,
                             title: Text(_roleTitle(role)),
                           ),
@@ -190,8 +189,7 @@ class _InvitationDialogContent extends StatelessWidget {
                             child: ListTile(
                               title: Text(_roleTitle(role)),
                               subtitle: Text(_roleSubTitle(role)),
-                              isThreeLine: true,
-                              horizontalTitleGap: 0,
+                              contentPadding: EdgeInsets.zero,
                             ),
                           ),
                         )
