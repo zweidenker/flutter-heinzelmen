@@ -102,3 +102,12 @@ const ProfilePicture({
     name: 'Christian Denker',
   })
 ```
+
+## InvitationDialog
+Show a Dialog to invite someone to a Space
+
+```dart
+showSpaceInvitationDialog(context: context, space: space);
+```
+
+The available Roles and Invitation Method (Invitation, Direct Add) can be configured as well as all Strings. For more Details check the code Documentation
