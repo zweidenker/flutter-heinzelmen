@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:apptive_grid_heinzelmen/src/invitation_dialog/invitation_localization.dart';
 
 class InvitationLocalizationEn extends InvitationLocalization {
