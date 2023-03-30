@@ -316,26 +316,78 @@ void main() {
       ).called(1);
     });
 
+    group('Result', () {
+      testWidgets('Cancel, result is false', (tester) async {
+        await tester.pumpWidget(target);
+        await tester.pumpAndSettle();
+
+        final result =
+            showSpaceInvitationDialog(context: context, space: space);
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text('Cancel'));
+        await tester.pumpAndSettle();
+
+        expect(await result, isFalse);
+      });
+      testWidgets('Success, result is true', (tester) async {
+        when(
+          () => client.performApptiveLink<bool>(
+            link: inviteLink,
+            body: {
+              'email': email,
+              'role': Role.admin.backendName,
+            },
+            parseResponse: any(named: 'parseResponse'),
+          ),
+        ).thenAnswer((invocation) async {
+          final parser =
+              invocation.namedArguments[const Symbol('parseResponse')]
+                  as Future<bool> Function(Response);
+
+          return parser(Response('Invitation send', 200));
+        });
+        await tester.pumpWidget(target);
+        await tester.pumpAndSettle();
+
+        final result =
+            showSpaceInvitationDialog(context: context, space: space);
+        await tester.pumpAndSettle();
+
+        await tester.enterText(find.byType(TextFormField), email);
+
+        await tester.tap(find.text('Send'));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text('Cancel'));
+        await tester.pumpAndSettle();
+
+        expect(await result, isTrue);
+      });
+    });
+
     group('Localization', () {
       testWidgets('Locale is German uses German translation', (tester) async {
-        await tester.pumpWidget(ApptiveGrid.withClient(
-          client: client,
-          child: MaterialApp(
-            locale: Locale('de'),
-            supportedLocales: [Locale('de')],
-            localizationsDelegates: [
-              DefaultWidgetsLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            home: Builder(
-              builder: (buildContext) {
-                context = buildContext;
-                return const SizedBox();
-              },
+        await tester.pumpWidget(
+          ApptiveGrid.withClient(
+            client: client,
+            child: MaterialApp(
+              locale: const Locale('de'),
+              supportedLocales: const [Locale('de')],
+              localizationsDelegates: const [
+                DefaultWidgetsLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              home: Builder(
+                builder: (buildContext) {
+                  context = buildContext;
+                  return const SizedBox();
+                },
+              ),
             ),
           ),
-        ));
+        );
         await tester.pumpAndSettle();
 
         showSpaceInvitationDialog(context: context, space: space);
@@ -348,9 +400,10 @@ void main() {
         await tester.pumpAndSettle();
 
         showSpaceInvitationDialog(
-            context: context,
-            space: space,
-            localization: InvitationLocalizationDE());
+          context: context,
+          space: space,
+          localization: const InvitationLocalizationDE(),
+        );
         await tester.pumpAndSettle();
 
         expect(find.text('Senden'), findsOneWidget);

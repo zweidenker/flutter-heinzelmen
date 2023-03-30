@@ -2,7 +2,9 @@
 
 import 'package:apptive_grid_heinzelmen/src/invitation_dialog/invitation_localization.dart';
 
+/// English Translations for [InvitationLocalization]
 class InvitationLocalizationEn extends InvitationLocalization {
+  /// Const constructor to call super
   const InvitationLocalizationEn() : super();
 
   @override

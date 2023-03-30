@@ -10,7 +10,15 @@ import 'package:http/http.dart';
 
 export 'package:apptive_grid_heinzelmen/src/invitation_dialog/invitation_localization.dart';
 
-Future showSpaceInvitationDialog({
+/// Shows a Dialog to invite/add someone to a [Space]
+/// [space] is the [Space] that should be shared. [Space.links] needs to contain the Link for [type]
+/// Also [type] needs to be either [ApptiveLinkType.invite] or [ApptiveLinkType.addSpace]
+/// Note: Even when using [ApptiveLinkType.addSpace] the Ui will display Strings pointing to the user being invited to a space
+/// This can be prevented by using a custom [localization]
+///
+/// It is also possible to define which [roles] can be added. This can't be empty. Also if it only contains one [Role] the selection box is not shown
+/// This will return a Future<bool> which will return if one or more invites where send
+Future<bool> showSpaceInvitationDialog({
   required BuildContext context,
   required Space space,
   List<Role> allowedRoles = Role.values,
@@ -23,19 +31,20 @@ Future showSpaceInvitationDialog({
 
   final l10n = localization ??
       (Localizations.localeOf(context).languageCode == 'de'
-          ? InvitationLocalizationDE()
-          : InvitationLocalizationEn());
+          ? const InvitationLocalizationDE()
+          : const InvitationLocalizationEn());
 
-  TextEditingController _emailController = TextEditingController();
-  ValueNotifier<Role> _roleNotifier = ValueNotifier(allowedRoles.first);
-  ValueNotifier<bool> _loading = ValueNotifier(false);
-  ValueNotifier<dynamic> _errorNotifier = ValueNotifier(null);
+  TextEditingController emailController = TextEditingController();
+  ValueNotifier<Role> roleNotifier = ValueNotifier(allowedRoles.first);
+  ValueNotifier<bool> loading = ValueNotifier(false);
+  ValueNotifier<dynamic> errorNotifier = ValueNotifier(null);
+  bool dialogResult = false;
   return showDialog(
     context: context,
     barrierDismissible: false,
     builder: (dialogContext) {
       return ValueListenableBuilder<bool>(
-        valueListenable: _loading,
+        valueListenable: loading,
         builder: (_, loading, child) => IgnorePointer(
           ignoring: loading,
           child: child,
@@ -54,9 +63,9 @@ Future showSpaceInvitationDialog({
               ),
             ),
             content: _InvitationDialogContent(
-              emailController: _emailController,
-              role: _roleNotifier,
-              error: _errorNotifier,
+              emailController: emailController,
+              role: roleNotifier,
+              error: errorNotifier,
               allowedRoles: allowedRoles,
               localization: l10n,
             ),
@@ -66,20 +75,23 @@ Future showSpaceInvitationDialog({
                 child: Text(l10n.actionCancel),
               ),
               _InvitationSendButton(
-                  loading: _loading,
-                  role: _roleNotifier,
-                  error: _errorNotifier,
-                  localization: l10n,
-                  email: _emailController,
-                  link: space.links[type]!),
+                loading: loading,
+                role: roleNotifier,
+                error: errorNotifier,
+                onInviteSend: (value) => dialogResult = value,
+                localization: l10n,
+                email: emailController,
+                link: space.links[type]!,
+              ),
             ],
           ),
         ),
       );
     },
-  );
+  ).then((_) => dialogResult);
 }
 
+/// Returns a List of [TextSpans] that format [argument] with [style] and use default styles for other text that was generated with [getText]
 @visibleForTesting
 List<TextSpan> getSpans({
   required String Function(String) getText,
@@ -109,14 +121,13 @@ List<TextSpan> getSpans({
 }
 
 class _InvitationDialogContent extends StatelessWidget {
-  const _InvitationDialogContent(
-      {Key? key,
-      required this.emailController,
-      required this.role,
-      required this.error,
-      required this.allowedRoles,
-      required this.localization})
-      : super(key: key);
+  const _InvitationDialogContent({
+    required this.emailController,
+    required this.role,
+    required this.error,
+    required this.allowedRoles,
+    required this.localization,
+  });
 
   final TextEditingController emailController;
   final ValueNotifier<Role> role;
@@ -138,11 +149,11 @@ class _InvitationDialogContent extends StatelessWidget {
               children: [
                 Text(localization.message),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
-                    autofillHints: [AutofillHints.email],
+                    autofillHints: const [AutofillHints.email],
                     validator: (value) {
                       if (!RegExp(r'^\S+@\S+\.\S+$').hasMatch(value ?? '')) {
                         return localization.nonValidEmail;
@@ -162,22 +173,28 @@ class _InvitationDialogContent extends StatelessWidget {
                     value: role,
                     isExpanded: true,
                     itemHeight: null,
-                    underline: SizedBox(),
+                    underline: const SizedBox(),
                     selectedItemBuilder: (_) => allowedRoles
-                        .map((role) => ListTile(
+                        .map(
+                          (role) => ListTile(
                             horizontalTitleGap: 0,
                             contentPadding: EdgeInsets.zero,
-                            title: Text(_roleTitle(role))))
+                            title: Text(_roleTitle(role)),
+                          ),
+                        )
                         .toList(),
                     items: allowedRoles
-                        .map((role) => DropdownMenuItem(
+                        .map(
+                          (role) => DropdownMenuItem(
                             value: role,
                             child: ListTile(
                               title: Text(_roleTitle(role)),
                               subtitle: Text(_roleSubTitle(role)),
                               isThreeLine: true,
                               horizontalTitleGap: 0,
-                            )))
+                            ),
+                          ),
+                        )
                         .toList(),
                     onChanged: (newRole) {
                       if (newRole != null) {
@@ -224,19 +241,20 @@ class _InvitationDialogContent extends StatelessWidget {
 }
 
 class _InvitationSendButton extends StatefulWidget {
-  const _InvitationSendButton(
-      {Key? key,
-      required this.loading,
-      required this.role,
-      required this.error,
-      required this.localization,
-      required this.email,
-      required this.link})
-      : super(key: key);
+  const _InvitationSendButton({
+    required this.loading,
+    required this.role,
+    required this.error,
+    required this.onInviteSend,
+    required this.localization,
+    required this.email,
+    required this.link,
+  });
 
   final ValueNotifier<bool> loading;
   final ValueNotifier<Role> role;
   final ValueNotifier<dynamic> error;
+  final void Function(bool) onInviteSend;
   final InvitationLocalization localization;
   final TextEditingController email;
   final ApptiveLink link;
@@ -252,19 +270,20 @@ class _InvitationSendButtonState extends State<_InvitationSendButton> {
       valueListenable: widget.loading,
       builder: (context, loading, _) {
         return TextButton(
-            onPressed: _send,
-            child: loading
-                ? const SizedBox(
-                    width: 32,
-                    height: 16,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: CircularProgressIndicator.adaptive(
-                        strokeWidth: 2,
-                      ),
+          onPressed: _send,
+          child: loading
+              ? const SizedBox(
+                  width: 32,
+                  height: 16,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: CircularProgressIndicator.adaptive(
+                      strokeWidth: 2,
                     ),
-                  )
-                : Text(widget.localization.actionSend));
+                  ),
+                )
+              : Text(widget.localization.actionSend),
+        );
       },
     );
   }
@@ -279,22 +298,31 @@ class _InvitationSendButtonState extends State<_InvitationSendButton> {
       try {
         final email = widget.email.text;
         await client.performApptiveLink<bool>(
-            link: widget.link,
-            body: {
-              'email': email,
-              'role': widget.role.value.backendName,
-            },
-            parseResponse: (response) async {
-              widget.email.clear();
-              Form.of(context).reset();
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text.rich(TextSpan(
-                      children: getSpans(
-                          getText: widget.localization.inviteSend,
-                          argument: widget.email.text,
-                          style: TextStyle(fontWeight: FontWeight.bold))))));
-              return response.statusCode < 300;
-            });
+          link: widget.link,
+          body: {
+            'email': email,
+            'role': widget.role.value.backendName,
+          },
+          parseResponse: (response) async {
+            widget.email.clear();
+            Form.of(context).reset();
+            widget.onInviteSend(true);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text.rich(
+                  TextSpan(
+                    children: getSpans(
+                      getText: widget.localization.inviteSend,
+                      argument: widget.email.text,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            );
+            return response.statusCode < 300;
+          },
+        );
       } catch (error) {
         if (error is Response) {
           try {
