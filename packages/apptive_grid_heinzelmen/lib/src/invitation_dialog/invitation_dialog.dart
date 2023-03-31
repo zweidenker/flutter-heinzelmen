@@ -41,7 +41,6 @@ Future<bool> showSpaceInvitationDialog({
   bool dialogResult = false;
   return showDialog(
     context: context,
-    barrierDismissible: false,
     builder: (dialogContext) {
       return ValueListenableBuilder<bool>(
         valueListenable: loading,
@@ -78,7 +77,25 @@ Future<bool> showSpaceInvitationDialog({
                 loading: loading,
                 role: roleNotifier,
                 error: errorNotifier,
-                onInviteSend: (value) => dialogResult = value,
+                onInviteSend: (email) {
+                  dialogResult = true;
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text.rich(
+                          TextSpan(
+                            children: getHighlightSpans(
+                              getText: l10n.inviteSend,
+                              highlight: email,
+                              highlightStyle:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                },
                 localization: l10n,
                 email: emailController,
                 link: space.links[type]!,
@@ -256,7 +273,9 @@ class _InvitationSendButton extends StatefulWidget {
   final ValueNotifier<bool> loading;
   final ValueNotifier<Role> role;
   final ValueNotifier<dynamic> error;
-  final void Function(bool) onInviteSend;
+
+  /// Callback with the email address that the invite was send to
+  final void Function(String) onInviteSend;
   final InvitationLocalization localization;
   final TextEditingController email;
   final ApptiveLink link;
@@ -306,23 +325,9 @@ class _InvitationSendButtonState extends State<_InvitationSendButton> {
             'role': widget.role.value.backendName,
           },
           parseResponse: (response) async {
+            widget.onInviteSend(email);
             widget.email.clear();
             Form.of(context).reset();
-            widget.onInviteSend(true);
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text.rich(
-                  TextSpan(
-                    children: getHighlightSpans(
-                      getText: widget.localization.inviteSend,
-                      highlight: widget.email.text,
-                      highlightStyle:
-                          const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
-            );
             return response.statusCode < 300;
           },
         );
