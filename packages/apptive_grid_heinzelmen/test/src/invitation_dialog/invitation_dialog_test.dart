@@ -15,10 +15,10 @@ void main() {
     const style = TextStyle(fontWeight: FontWeight.bold);
 
     test('Substitute not in result returns single Span', () {
-      final spans = getSpans(
+      final spans = getHighlightSpans(
         getText: (_) => 'No Content',
-        argument: 'spaceName',
-        style: style,
+        highlight: 'spaceName',
+        highlightStyle: style,
       );
 
       expect(spans.length, 1);
@@ -26,10 +26,10 @@ void main() {
     });
 
     test('Substitute is first element returns two Spans', () {
-      final spans = getSpans(
+      final spans = getHighlightSpans(
         getText: (value) => '$value Content',
-        argument: 'value',
-        style: style,
+        highlight: 'value',
+        highlightStyle: style,
       );
 
       expect(spans.length, 2);
@@ -40,10 +40,10 @@ void main() {
     });
 
     test('Substitute is last element returns two Spans', () {
-      final spans = getSpans(
+      final spans = getHighlightSpans(
         getText: (value) => 'Content $value',
-        argument: 'value',
-        style: style,
+        highlight: 'value',
+        highlightStyle: style,
       );
 
       expect(spans.length, 2);
@@ -55,10 +55,10 @@ void main() {
 
     test('Space Name gets Substituted', () {
       const spaceName = 'spaceName';
-      final spans = getSpans(
+      final spans = getHighlightSpans(
         getText: const InvitationLocalizationEn().title,
-        argument: spaceName,
-        style: style,
+        highlight: spaceName,
+        highlightStyle: style,
       );
 
       expect(spans.length, 3);
@@ -72,10 +72,10 @@ void main() {
 
     test('Space Name occurs before substitution, is substituted correctly', () {
       const spaceName = 'Share ';
-      final spans = getSpans(
+      final spans = getHighlightSpans(
         getText: const InvitationLocalizationEn().title,
-        argument: spaceName,
-        style: style,
+        highlight: spaceName,
+        highlightStyle: style,
       );
 
       expect(spans.length, 3);
@@ -89,10 +89,10 @@ void main() {
 
     test('Space Name occurs after substitution, is substituted correctly', () {
       const spaceName = 'others';
-      final spans = getSpans(
+      final spans = getHighlightSpans(
         getText: const InvitationLocalizationEn().title,
-        argument: spaceName,
-        style: style,
+        highlight: spaceName,
+        highlightStyle: style,
       );
 
       expect(spans.length, 3);

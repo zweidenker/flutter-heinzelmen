@@ -53,10 +53,10 @@ Future<bool> showSpaceInvitationDialog({
           child: AlertDialog(
             title: Text.rich(
               TextSpan(
-                children: getSpans(
+                children: getHighlightSpans(
                   getText: l10n.title,
-                  argument: space.name,
-                  style: TextStyle(
+                  highlight: space.name,
+                  highlightStyle: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -91,15 +91,19 @@ Future<bool> showSpaceInvitationDialog({
   ).then((_) => dialogResult);
 }
 
-/// Returns a List of [TextSpans] that format [argument] with [style] and use default styles for other text that was generated with [getText]
+/// Returns a List of [TextSpans] that format [highlight] with [highlightStyle]
+/// This will call [getText] with [highlight] to get a String where [highlight] can be substituted in
+/// It will return a List of [TextSpan] where the first occurrence of [highlight] has [highlightStyle] as the applied style
+/// If [highlight] appears in [getText] but is not the substituted value this will not be counted as the first occurrence
+/// Only the first [highlight] will be styled with [highlightStyle]
 @visibleForTesting
-List<TextSpan> getSpans({
+List<TextSpan> getHighlightSpans({
   required String Function(String) getText,
-  required String argument,
-  required TextStyle style,
+  required String highlight,
+  required TextStyle highlightStyle,
 }) {
   final emptyTitle = getText('');
-  final realTitle = getText(argument);
+  final realTitle = getText(highlight);
 
   if (realTitle.length == emptyTitle.length) {
     return [TextSpan(text: realTitle)];
@@ -113,9 +117,9 @@ List<TextSpan> getSpans({
     }
     return [
       if (startIndex != 0) TextSpan(text: realTitle.substring(0, startIndex)),
-      TextSpan(text: argument, style: style),
-      if (startIndex + argument.length < realTitle.length)
-        TextSpan(text: realTitle.substring(startIndex + argument.length)),
+      TextSpan(text: highlight, style: highlightStyle),
+      if (startIndex + highlight.length < realTitle.length)
+        TextSpan(text: realTitle.substring(startIndex + highlight.length)),
     ];
   }
 }
@@ -309,10 +313,11 @@ class _InvitationSendButtonState extends State<_InvitationSendButton> {
               SnackBar(
                 content: Text.rich(
                   TextSpan(
-                    children: getSpans(
+                    children: getHighlightSpans(
                       getText: widget.localization.inviteSend,
-                      argument: widget.email.text,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      highlight: widget.email.text,
+                      highlightStyle:
+                          const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
