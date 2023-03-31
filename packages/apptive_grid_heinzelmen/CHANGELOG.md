@@ -1,3 +1,7 @@
+## 1.1.0
+
+ - **FEAT**: Invitation dialog (#16).
+
 ## 1.0.0
 * Version 1.0.0
 
