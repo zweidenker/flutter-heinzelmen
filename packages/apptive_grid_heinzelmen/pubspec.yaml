@@ -9,22 +9,25 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  apptive_grid_core: ^1.0.0
-  apptive_grid_user_management: ^1.0.0
-  apptive_grid_theme: ^1.0.0
+  apptive_grid_core: ^1.3.0
+  apptive_grid_user_management: ^1.1.2
+  apptive_grid_theme: ^1.1.0
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.1+1
+  http: ^0.13.5
   intl: ^0.17.0
   provider: ^6.0.3
   universal_file: ^1.0.0
-  zweidenker_heinzelmen: ^0.0.3
+  zweidenker_heinzelmen: ^1.0.0
 
 dev_dependencies:
   alchemist: ^0.6.0
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  flutter_localizations:
+    sdk: flutter
   golden_toolkit: ^0.13.0
   mocktail: ^0.3.0
   mocktail_image_network: ^0.3.1
