@@ -1,3 +1,7 @@
+## 1.2.0
+
+ - **FEAT**: Simpler parsing of ApptiveGrid Objects (#18).
+
 ## 1.1.0
 
  - **FEAT**: Invitation dialog (#16).
