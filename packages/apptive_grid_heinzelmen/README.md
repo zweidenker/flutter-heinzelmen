@@ -111,3 +111,25 @@ showSpaceInvitationDialog(context: context, space: space);
 ```
 
 The available Roles and Invitation Method (Invitation, Direct Add) can be configured as well as all Strings. For more Details check the code Documentation
+
+## Perform ApptiveLink for ApptiveGrid Objects
+An extension method to skip having to write custom response parsers when performing ApptiveLink if the result is an ApptiveGrid Object or a list of those.
+
+```dart
+final client = ApptiveGridClient();
+
+final grids = await client.performApptiveLinkForApptiveGridObject<List<Grid>>(link: gridLink);
+```
+can be used instead of
+
+```dart
+final client = ApptiveGridClient();
+
+final grids = await client.performApptiveLink<List<Grid>>(
+  link: gridLink,
+  parseResponse: (response) async {
+    final jsonList = (jsonDecode(response.body) as Map)['items'] as List;
+    return jsonList.map((e) => Grid.fromJson(e)).toList();
+  },
+);
+```
