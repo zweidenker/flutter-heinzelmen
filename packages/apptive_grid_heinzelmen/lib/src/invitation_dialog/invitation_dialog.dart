@@ -74,6 +74,7 @@ Future<bool> showSpaceInvitationDialog({
                 child: Text(l10n.actionCancel),
               ),
               _InvitationSendButton(
+                client: ApptiveGrid.getClient(context),
                 loading: loading,
                 role: roleNotifier,
                 error: errorNotifier,
@@ -261,6 +262,7 @@ class _InvitationDialogContent extends StatelessWidget {
 
 class _InvitationSendButton extends StatefulWidget {
   const _InvitationSendButton({
+    required this.client,
     required this.loading,
     required this.role,
     required this.error,
@@ -270,6 +272,7 @@ class _InvitationSendButton extends StatefulWidget {
     required this.link,
   });
 
+  final ApptiveGridClient client;
   final ValueNotifier<bool> loading;
   final ValueNotifier<Role> role;
   final ValueNotifier<dynamic> error;
@@ -313,12 +316,11 @@ class _InvitationSendButtonState extends State<_InvitationSendButton> {
     FocusScope.of(context).requestFocus(FocusNode());
 
     if (Form.of(context).validate()) {
-      final client = ApptiveGrid.getClient(context, listen: false);
       widget.loading.value = true;
       widget.error.value = null;
       try {
         final email = widget.email.text;
-        await client.performApptiveLink<bool>(
+        await widget.client.performApptiveLink<bool>(
           link: widget.link,
           body: {
             'email': email,
