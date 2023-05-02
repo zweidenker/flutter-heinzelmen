@@ -1,3 +1,7 @@
+## 1.2.1
+
+ - **FIX**: Use Context used to call InvitationDialog for getting the ApptiveGridClient (#19).
+
 ## 1.2.0
 
  - **FEAT**: Simpler parsing of ApptiveGrid Objects (#18).
