@@ -170,7 +170,7 @@ void main() {
 
         final imageUrl =
             ((find.byType(SvgPicture).evaluate().first.widget as SvgPicture)
-                    .pictureProvider as NetworkPicture)
+                    .bytesLoader as SvgNetworkLoader)
                 .url;
         expect(imageUrl, uri);
       });
@@ -205,7 +205,7 @@ void main() {
 
         final imageUrl =
             ((find.byType(SvgPicture).evaluate().first.widget as SvgPicture)
-                    .pictureProvider as NetworkPicture)
+                    .bytesLoader as SvgNetworkLoader)
                 .url;
         expect(imageUrl, uri);
       });
