@@ -1,3 +1,7 @@
+## 1.3.0
+
+ - **FEAT**: Update Dependencies for Flutter 3.10 (#20).
+
 ## 1.2.1
 
  - **FIX**: Use Context used to call InvitationDialog for getting the ApptiveGridClient (#19).

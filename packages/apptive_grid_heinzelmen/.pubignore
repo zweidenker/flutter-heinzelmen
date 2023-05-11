@@ -36,3 +36,4 @@ test/**/failures/**/*.*
 !test/**/goldens/ci/*.*
 
 pubspec_overrides.yaml
+**/poeditor.properties

@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-05-11
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`apptive_grid_heinzelmen` - `v1.3.0`](#apptive_grid_heinzelmen---v130)
+ - [`zweidenker_heinzelmen` - `v1.1.0`](#zweidenker_heinzelmen---v110)
+
+---
+
+#### `apptive_grid_heinzelmen` - `v1.3.0`
+
+ - **FEAT**: Update Dependencies for Flutter 3.10 (#20).
+
+#### `zweidenker_heinzelmen` - `v1.1.0`
+
+ - **FEAT**: Update Dependencies for Flutter 3.10 (#20).
+
+
 ## 2023-05-02
 
 ### Changes
