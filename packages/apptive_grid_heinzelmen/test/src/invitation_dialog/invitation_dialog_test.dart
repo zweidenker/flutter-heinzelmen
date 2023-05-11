@@ -674,7 +674,7 @@ void main() {
         expect(find.text('Manage'), findsNothing);
         // 2 For Selected Builder and Items
         expect(find.text('Read only'), findsNWidgets(2));
-        expect(find.text('Edit entries'), findsNWidgets(2));
+        expect(find.text('Edit entries'), findsNWidgets(1));
         expect(
           (find.byType(DropdownButton<Role>).evaluate().first.widget
                   as DropdownButton)
