@@ -25,7 +25,7 @@ scripts:
   lint:format:
     run: |
       melos exec -c 1 -- \
-        "flutter format . --set-exit-if-changed"
+        "dart format . --set-exit-if-changed"
 
   test:all:
     run: melos run test --no-select
