@@ -42,9 +42,9 @@ class _AppVersionState extends State<AppVersion> {
   String? _versionString;
 
   @override
-  void initState() {
-    super.initState();
-    getVersionInfo().then((version) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    getVersionInfo(widget._calculateDisplayBuildNumber).then((version) {
       _versionString = version;
       if (mounted) {
         setState(() {});
@@ -63,14 +63,16 @@ class _AppVersionState extends State<AppVersion> {
       return const SizedBox();
     }
   }
+}
 
-  /// Gets the Version Number with an unscrambled Build Number
-  /// The method of how
-  Future<String> getVersionInfo() {
-    return PackageInfo.fromPlatform().then((value) {
-      return '${value.version}+${widget._calculateDisplayBuildNumber(value)}';
-    });
-  }
+/// Gets the Version Number with an unscrambled Build Number
+/// And returns it as Major.Minor.Patch+BuildNumber
+Future<String> getVersionInfo(
+    [String Function(PackageInfo) displayBuildNumber =
+        _unscrambleBuildNumber]) {
+  return PackageInfo.fromPlatform().then((value) {
+    return '${value.version}+${displayBuildNumber.call(value)}';
+  });
 }
 
 /// Gets the Version Number with an unscrambled Build Number
