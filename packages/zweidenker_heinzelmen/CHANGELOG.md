@@ -1,3 +1,7 @@
+## 1.2.0
+
+ - **FEAT**: AppVersion.offset (#21).
+
 ## 1.1.0
 
  - **FEAT**: Update Dependencies for Flutter 3.10 (#20).
