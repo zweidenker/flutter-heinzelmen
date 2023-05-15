@@ -4,55 +4,96 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:zweidenker_heinzelmen/zweidenker_heinzelmen.dart';
 
 void main() {
-  setUpAll(() {
-    PackageInfo.setMockInitialValues(
-      appName: 'appName',
-      packageName: 'packageName',
-      version: '1.2.3',
-      buildNumber: '102030081',
-      buildSignature: 'buildSignature',
-    );
-  });
-
   const formattedVersion = '1.2.3+81';
 
-  group('Parse version Number', () {
-    test('Get Version Number, unscrambles buildNumber', () async {
-      final version = await getVersionInfo();
+  group('Factored Version', () {
+    setUpAll(() {
+      PackageInfo.setMockInitialValues(
+        appName: 'appName',
+        packageName: 'packageName',
+        version: '1.2.3',
+        buildNumber: '102030081',
+        buildSignature: 'buildSignature',
+      );
+    });
+    group('Version Number Widget', () {
+      testWidgets('Shows Sized Box while loading', (tester) async {
+        await tester.pumpWidget(const AppVersion());
 
-      expect(version, equals(formattedVersion));
+        expect(find.byType(SizedBox), findsOneWidget);
+      });
+
+      testWidgets('Shows Version Number as Text', (tester) async {
+        await tester.pumpWidget(const MaterialApp(home: AppVersion()));
+        await tester.pump();
+
+        expect(find.text(formattedVersion), findsOneWidget);
+      });
+
+      testWidgets('Provided Style gets applied', (tester) async {
+        const textStyle = TextStyle(fontWeight: FontWeight.bold);
+
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: AppVersion(
+              textStyle: textStyle,
+            ),
+          ),
+        );
+        await tester.pump();
+
+        final textWidget =
+            find.text(formattedVersion).evaluate().first.widget as Text;
+        expect(textWidget.style, equals(textStyle));
+      });
     });
   });
 
-  group('Version Number Widget', () {
-    testWidgets('Shows Sized Box while loading', (tester) async {
-      await tester.pumpWidget(const AppVersion());
-
-      expect(find.byType(SizedBox), findsOneWidget);
-    });
-
-    testWidgets('Shows Version Number as Text', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: AppVersion()));
-      await tester.pump();
-
-      expect(find.text(formattedVersion), findsOneWidget);
-    });
-
-    testWidgets('Provided Style gets applied', (tester) async {
-      const textStyle = TextStyle(fontWeight: FontWeight.bold);
-
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: AppVersion(
-            textStyle: textStyle,
-          ),
-        ),
+  group('Offset Version', () {
+    setUpAll(() {
+      PackageInfo.setMockInitialValues(
+        appName: 'appName',
+        packageName: 'packageName',
+        version: '1.2.3',
+        buildNumber: '102030081',
+        buildSignature: 'buildSignature',
       );
-      await tester.pump();
+    });
+    group('Version Number Widget', () {
+      testWidgets('Shows Sized Box while loading', (tester) async {
+        await tester.pumpWidget(
+          AppVersion.withOffset(
+            offset: 102030000,
+          ),
+        );
 
-      final textWidget =
-          find.text(formattedVersion).evaluate().first.widget as Text;
-      expect(textWidget.style, equals(textStyle));
+        expect(find.byType(SizedBox), findsOneWidget);
+      });
+
+      testWidgets('Shows Version Number as Text', (tester) async {
+        await tester.pumpWidget(const MaterialApp(home: AppVersion()));
+        await tester.pump();
+
+        expect(find.text(formattedVersion), findsOneWidget);
+      });
+
+      testWidgets('Provided Style gets applied', (tester) async {
+        const textStyle = TextStyle(fontWeight: FontWeight.bold);
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: AppVersion.withOffset(
+              offset: 102030000,
+              textStyle: textStyle,
+            ),
+          ),
+        );
+        await tester.pump();
+
+        final textWidget =
+            find.text(formattedVersion).evaluate().first.widget as Text;
+        expect(textWidget.style, equals(textStyle));
+      });
     });
   });
 }
