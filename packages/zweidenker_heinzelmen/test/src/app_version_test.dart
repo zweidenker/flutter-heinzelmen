@@ -62,7 +62,7 @@ void main() {
     group('Version Number Widget', () {
       testWidgets('Shows Sized Box while loading', (tester) async {
         await tester.pumpWidget(
-          AppVersion.withOffset(
+          AppVersion.offset(
             offset: 102030000,
           ),
         );
@@ -82,7 +82,7 @@ void main() {
 
         await tester.pumpWidget(
           MaterialApp(
-            home: AppVersion.withOffset(
+            home: AppVersion.offset(
               offset: 102030000,
               textStyle: textStyle,
             ),

@@ -16,7 +16,7 @@ class AppVersion extends StatefulWidget {
 
   /// Creates a TextWidget to show the output of [getVersionString] with [textStyle]
   /// The displayed Build Number will be the result of the raw build number - offset
-  factory AppVersion.withOffset({
+  factory AppVersion.offset({
     Key? key,
     TextStyle? textStyle,
     int offset = 0,
