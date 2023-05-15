@@ -67,9 +67,9 @@ class _AppVersionState extends State<AppVersion> {
 
 /// Gets the Version Number with an unscrambled Build Number
 /// And returns it as Major.Minor.Patch+BuildNumber
-Future<String> getVersionInfo(
-    [String Function(PackageInfo) displayBuildNumber =
-        _unscrambleBuildNumber]) {
+Future<String> getVersionInfo([
+  String Function(PackageInfo) displayBuildNumber = _unscrambleBuildNumber,
+]) {
   return PackageInfo.fromPlatform().then((value) {
     return '${value.version}+${displayBuildNumber.call(value)}';
   });
