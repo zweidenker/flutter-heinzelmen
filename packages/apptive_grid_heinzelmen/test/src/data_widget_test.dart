@@ -379,6 +379,10 @@ void main() {
                       );
 
                       break;
+                    case DataType.lookUp:
+                      data = LookUpDataEntity(StringDataEntity('Look Up'));
+
+                      break;
                   }
 
                   return GoldenTestScenario(
@@ -602,6 +606,25 @@ void main() {
 
       verify(() => launcher.openWebPage(url: uri, openExternally: true))
           .called(1);
+    });
+  });
+
+  group('LookUp', () {
+    testWidgets('Nested LookUp Widget', (tester) async {
+      final entity =
+          LookUpDataEntity(LookUpDataEntity(StringDataEntity('Nested LookUp')));
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: DataWidget(
+            data: entity,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(DataWidget), findsNWidgets(3));
+      expect(find.text('Nested LookUp'), findsOneWidget);
     });
   });
 

@@ -302,6 +302,15 @@ class DataWidget extends StatelessWidget {
       );
     }
 
+    if (data is LookUpDataEntity) {
+      return DataWidget(
+        data: (data as LookUpDataEntity).value!,
+        textStyle: textStyle,
+        emptyBuilder: emptyBuilder,
+        linkLauncher: linkLauncher,
+      );
+    }
+
     return Text(
       data.value.toString(),
       style: textStyle,
