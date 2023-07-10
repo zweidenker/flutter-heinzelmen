@@ -1,3 +1,7 @@
+## 1.4.0
+
+ - **FEAT**: DataWidget for DataType.lookUp (#24).
+
 ## 1.3.1
 
  - Update a dependency to the latest release.

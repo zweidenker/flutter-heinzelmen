@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-07-10
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`apptive_grid_heinzelmen` - `v1.4.0`](#apptive_grid_heinzelmen---v140)
+
+---
+
+#### `apptive_grid_heinzelmen` - `v1.4.0`
+
+ - **FEAT**: DataWidget for DataType.lookUp (#24).
+
+
 ## 2023-05-15
 
 ### Changes
