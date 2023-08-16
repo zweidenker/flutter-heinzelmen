@@ -383,6 +383,10 @@ void main() {
                       data = LookUpDataEntity(StringDataEntity('Look Up'));
 
                       break;
+                    case DataType.reducedLookUp:
+                      data = ReducedLookUpDataEntity(IntegerDataEntity(3));
+
+                      break;
                   }
 
                   return GoldenTestScenario(
