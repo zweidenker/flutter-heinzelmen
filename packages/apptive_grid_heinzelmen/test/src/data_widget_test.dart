@@ -247,7 +247,7 @@ void main() {
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.green,
-            )
+            ),
           }.entries.map((style) {
             return GoldenTestScenario(
               name: style.key,
@@ -290,7 +290,7 @@ void main() {
                           'Values',
                           'Can',
                           'Be',
-                          'Selected'
+                          'Selected',
                         },
                       );
                       break;
@@ -414,7 +414,7 @@ void main() {
         delegates: const [
           DefaultMaterialLocalizations.delegate,
           DefaultWidgetsLocalizations.delegate,
-          DefaultCupertinoLocalizations.delegate
+          DefaultCupertinoLocalizations.delegate,
         ],
         child: Material(
           child: DataWidget(
@@ -437,7 +437,7 @@ void main() {
         delegates: const [
           DefaultMaterialLocalizations.delegate,
           DefaultWidgetsLocalizations.delegate,
-          DefaultCupertinoLocalizations.delegate
+          DefaultCupertinoLocalizations.delegate,
         ],
         child: Material(
           child: DataWidget(
@@ -460,7 +460,7 @@ void main() {
         delegates: const [
           DefaultMaterialLocalizations.delegate,
           DefaultWidgetsLocalizations.delegate,
-          DefaultCupertinoLocalizations.delegate
+          DefaultCupertinoLocalizations.delegate,
         ],
         child: Material(
           child: DataWidget(data: DecimalDataEntity(47.11)),
@@ -481,7 +481,7 @@ void main() {
         delegates: const [
           DefaultMaterialLocalizations.delegate,
           DefaultWidgetsLocalizations.delegate,
-          DefaultCupertinoLocalizations.delegate
+          DefaultCupertinoLocalizations.delegate,
         ],
         child: Material(
           child: DataWidget(

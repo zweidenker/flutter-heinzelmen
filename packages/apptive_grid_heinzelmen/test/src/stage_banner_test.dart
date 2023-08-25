@@ -168,7 +168,7 @@ class StageBannerTestWidget extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => EnableBannerNotifier(enabled: enabled),
-        )
+        ),
       ],
       builder: (_, __) {
         return SizedBox(
