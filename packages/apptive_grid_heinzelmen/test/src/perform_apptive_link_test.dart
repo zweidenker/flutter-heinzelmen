@@ -71,14 +71,14 @@ void main() {
             null,
             null,
             true,
-            'Enum1'
+            'Enum1',
           ],
           '_id': '3ojhtqm2bgtwzpdbktuv6syv5',
           '_links': {
             "self": {
               "href":
                   "/api/users/userId/spaces/spaceId/grids/61bb271d457c98231c8fbb04/entities/619b63e84a391314968da9a0",
-              "method": "get"
+              "method": "get",
             },
           },
         },
@@ -91,14 +91,14 @@ void main() {
             null,
             null,
             true,
-            'Enum2'
+            'Enum2',
           ],
           '_id': '6bs7tqexlcy88cry3qzzvjbyz',
           '_links': {
             "self": {
               "href":
                   "/api/users/userId/spaces/spaceId/grids/61bb271d457c98231c8fbb04/entities/619b63e84a391314968da9a0",
-              "method": "get"
+              "method": "get",
             },
           },
         },
@@ -109,7 +109,7 @@ void main() {
             "self": {
               "href":
                   "/api/users/userId/spaces/spaceId/grids/61bb271d457c98231c8fbb04/entities/619b63e84a391314968da9a0",
-              "method": "get"
+              "method": "get",
             },
           },
         },
@@ -122,14 +122,14 @@ void main() {
             null,
             null,
             true,
-            'Enum2'
+            'Enum2',
           ],
           '_id': 'bxzfxf43vaeefhje6xcmnofa8',
           '_links': {
             "self": {
               "href":
                   "/api/users/userId/spaces/spaceId/grids/61bb271d457c98231c8fbb04/entities/619b63e84a391314968da9a0",
-              "method": "get"
+              "method": "get",
             },
           },
         },
@@ -142,14 +142,14 @@ void main() {
             null,
             null,
             true,
-            null
+            null,
           ],
           '_id': 'bxzfxf72k3j4d5fcmk6w0pa4s',
           '_links': {
             "self": {
               "href":
                   "/api/users/userId/spaces/spaceId/grids/61bb271d457c98231c8fbb04/entities/619b63e84a391314968da9a0",
-              "method": "get"
+              "method": "get",
             },
           },
         },
@@ -172,118 +172,118 @@ void main() {
                 'enum': [
                   'Enum1',
                   'Enum2',
-                ]
+                ],
               },
-            ]
+            ],
           },
-          '_id': {'type': 'string'}
-        }
+          '_id': {'type': 'string'},
+        },
       },
       'fields': [
         {
           "type": {
             "name": "string",
-            "componentTypes": ["textfield"]
+            "componentTypes": ["textfield"],
           },
           "key": null,
           "name": "String",
           "schema": {"type": "string"},
           "id": "6282104004bd30efc49b7f17",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "integer",
-            "componentTypes": ["textfield"]
+            "componentTypes": ["textfield"],
           },
           "key": null,
           "name": "Number",
           "schema": {"type": "integer"},
           "id": "6282106a04bd30163b9b7f3b",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "date-time",
-            "componentTypes": ["datePicker"]
+            "componentTypes": ["datePicker"],
           },
           "key": null,
           "name": "DateTime",
           "schema": {"type": "string", "format": "date-time"},
           "id": "6282104e04bd30efc49b7f22",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "date",
-            "componentTypes": ["datePicker", "textfield"]
+            "componentTypes": ["datePicker", "textfield"],
           },
           "key": null,
           "name": "Date",
           "schema": {"type": "string", "format": "date"},
           "id": "6282105c04bd30efc49b7f2e",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "string",
-            "componentTypes": ["textfield"]
+            "componentTypes": ["textfield"],
           },
           "key": null,
           "name": "String",
           "schema": {"type": "string"},
           "id": "6282104004bd30efc49b7f17",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "string",
-            "componentTypes": ["textfield"]
+            "componentTypes": ["textfield"],
           },
           "key": null,
           "name": "String",
           "schema": {"type": "string"},
           "id": "6282104004bd30efc49b7f17",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "boolean",
-            "componentTypes": ["checkbox"]
+            "componentTypes": ["checkbox"],
           },
           "key": null,
           "name": "Checkmark",
           "schema": {"type": "boolean"},
           "id": "6282107c04bd30163b9b7f4d",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "enum",
             "options": ["A", "B"],
-            "componentTypes": ["selectBox"]
+            "componentTypes": ["selectBox"],
           },
           "key": null,
           "name": "SingleSelect",
           "schema": {
             "type": "string",
-            "enum": ["Enum1", "Enum2"]
+            "enum": ["Enum1", "Enum2"],
           },
           "id": "6282108604bd30163b9b7f56",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
       ],
       'hiddenFields': [
         {
           "type": {
             "name": "string",
-            "componentTypes": ["textfield"]
+            "componentTypes": ["textfield"],
           },
           "key": null,
           "name": "Hidden Field",
           "schema": {"type": "string"},
           "id": "hiddenId",
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
       ],
       '_embedded': {
@@ -295,11 +295,11 @@ void main() {
               "self": {
                 "href":
                     "/api/users/userId/spaces/spaceId/grids/gridId/forms/formId",
-                "method": "get"
-              }
-            }
+                "method": "get",
+              },
+            },
           }
-        ]
+        ],
       },
       'name': 'New grid',
       'id': 'gridId',
@@ -307,80 +307,80 @@ void main() {
       '_links': {
         "addLink": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/AddLink",
-          "method": "post"
+          "method": "post",
         },
         "forms": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/forms",
-          "method": "get"
+          "method": "get",
         },
         "updateFieldType": {
           "href":
               "/api/users/userId/spaces/spaceId/grids/gridId/ColumnTypeChange",
-          "method": "post"
+          "method": "post",
         },
         "removeField": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/ColumnRemove",
-          "method": "post"
+          "method": "post",
         },
         "addEntity": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/entities",
-          "method": "post"
+          "method": "post",
         },
         "views": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/views",
-          "method": "get"
+          "method": "get",
         },
         "addView": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/views",
-          "method": "post"
+          "method": "post",
         },
         "self": {
           "href":
               "/api/users/userId/spaces/spaceId/grids/61bb271d457c98231c8fbb04",
-          "method": "get"
+          "method": "get",
         },
         "updateFieldKey": {
           "href":
               "/api/users/userId/spaces/spaceId/grids/gridId/ColumnKeyChange",
-          "method": "post"
+          "method": "post",
         },
         "query": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/query",
-          "method": "get"
+          "method": "get",
         },
         "entities": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/entities",
-          "method": "get"
+          "method": "get",
         },
         "updates": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/updates",
-          "method": "get"
+          "method": "get",
         },
         "schema": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/schema",
-          "method": "get"
+          "method": "get",
         },
         "updateFieldName": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/ColumnRename",
-          "method": "post"
+          "method": "post",
         },
         "addForm": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/forms",
-          "method": "post"
+          "method": "post",
         },
         "addField": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/ColumnAdd",
-          "method": "post"
+          "method": "post",
         },
         "rename": {
           "href": "/api/users/userId/spaces/spaceId/grids/gridId/Rename",
-          "method": "post"
+          "method": "post",
         },
         "remove": {
           "href":
               "/api/users/userId/spaces/spaceId/grids/61bb271d457c98231c8fbb04",
-          "method": "delete"
-        }
+          "method": "delete",
+        },
       },
     };
 
@@ -482,57 +482,57 @@ void main() {
         {
           "type": {
             "name": "date-time",
-            "componentTypes": ["datePicker"]
+            "componentTypes": ["datePicker"],
           },
           "schema": {"type": "string", "format": "date-time"},
           "id": "4zc4l4c5coyi7qh6q1ozrg54u",
           "name": "Date Time",
           "key": null,
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "boolean",
-            "componentTypes": ["checkbox"]
+            "componentTypes": ["checkbox"],
           },
           "schema": {"type": "boolean"},
           "id": "4zc4l456pca5ursrt9rxefpsc",
           "name": "Checkmark",
           "key": null,
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "date",
-            "componentTypes": ["datePicker", "textfield"]
+            "componentTypes": ["datePicker", "textfield"],
           },
           "schema": {"type": "string", "format": "date"},
           "id": "4zc4l49to77dhfagr844flaey",
           "name": "Date",
           "key": null,
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "string",
-            "componentTypes": ["textfield"]
+            "componentTypes": ["textfield"],
           },
           "schema": {"type": "string"},
           "id": "4zc4l45nmww7ujq7y4axlbtjg",
           "name": "Text",
           "key": null,
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
         {
           "type": {
             "name": "integer",
-            "componentTypes": ["textfield"]
+            "componentTypes": ["textfield"],
           },
           "schema": {"type": "integer"},
           "id": "4zc4l48ffin5v8pa2emyx9s15",
           "name": "Number",
           "key": null,
-          "_links": <String, dynamic>{}
+          "_links": <String, dynamic>{},
         },
       ],
       'components': [
@@ -544,10 +544,10 @@ void main() {
             'multi': false,
             'placeholder': '',
             'description': 'Text Description',
-            'label': null
+            'label': null,
           },
           'fieldId': '4zc4l45nmww7ujq7y4axlbtjg',
-          'type': 'textfield'
+          'type': 'textfield',
         },
         {
           'property': 'NumberC',
@@ -557,10 +557,10 @@ void main() {
             'multi': false,
             'placeholder': '',
             'description': 'Number description',
-            'label': 'Number Label'
+            'label': 'Number Label',
           },
           'fieldId': '4zc4l48ffin5v8pa2emyx9s15',
-          'type': 'textfield'
+          'type': 'textfield',
         },
         {
           'property': 'DateTimeC',
@@ -568,10 +568,10 @@ void main() {
           'required': false,
           'options': {
             'label': 'DateTime Label',
-            'description': 'DateTime Description'
+            'description': 'DateTime Description',
           },
           'fieldId': '4zc4l4c5coyi7qh6q1ozrg54u',
-          'type': 'datePicker'
+          'type': 'datePicker',
         },
         {
           'property': 'DateC',
@@ -579,7 +579,7 @@ void main() {
           'required': false,
           'options': {'label': 'Date Label', 'description': 'Date Description'},
           'fieldId': '4zc4l49to77dhfagr844flaey',
-          'type': 'datePicker'
+          'type': 'datePicker',
         },
         {
           'property': 'CheckmarkC',
@@ -587,10 +587,10 @@ void main() {
           'required': false,
           'options': {
             'label': 'Checkbox Label',
-            'description': 'Checkbox Description'
+            'description': 'Checkbox Description',
           },
           'fieldId': '4zc4l456pca5ursrt9rxefpsc',
-          'type': 'checkbox'
+          'type': 'checkbox',
         }
       ],
       'name': name,
@@ -612,23 +612,23 @@ void main() {
         "submit": {
           "href":
               "/api/users/614c5440b50f51e3ea8a2a50/spaces/62600bf5d7f0d75408996f69/grids/62600bf9d7f0d75408996f6c/forms/6262aadbcd22c4725899a114",
-          "method": "post"
+          "method": "post",
         },
         "remove": {
           "href":
               "/api/users/614c5440b50f51e3ea8a2a50/spaces/62600bf5d7f0d75408996f69/grids/62600bf9d7f0d75408996f6c/forms/6262aadbcd22c4725899a114",
-          "method": "delete"
+          "method": "delete",
         },
         "self": {
           "href":
               "/api/users/614c5440b50f51e3ea8a2a50/spaces/62600bf5d7f0d75408996f69/grids/62600bf9d7f0d75408996f6c/forms/6262aadbcd22c4725899a114",
-          "method": "get"
+          "method": "get",
         },
         "update": {
           "href":
               "/api/users/614c5440b50f51e3ea8a2a50/spaces/62600bf5d7f0d75408996f69/grids/62600bf9d7f0d75408996f6c/forms/6262aadbcd22c4725899a114",
-          "method": "put"
-        }
+          "method": "put",
+        },
       },
     };
 
@@ -668,9 +668,9 @@ void main() {
         "self": {
           "href":
               "/api/users/609bd67b9fcca3ea397e70c6/spaces/63d28a8578d9ca55c2af8b3c/grids/63d28a8978d9ca2750af8b43/sviews/63d28a8a78d9ca55c2af8b45",
-          "method": "get"
-        }
-      }
+          "method": "get",
+        },
+      },
     };
 
     test('Single SView', () async {
@@ -707,8 +707,8 @@ void main() {
       "emails": ["info@apptivegrid.de"],
       "role": "admin",
       "_links": {
-        "self": {"href": "/share", "method": "get"}
-      }
+        "self": {"href": "/share", "method": "get"},
+      },
     };
 
     test('Single Share', () async {
@@ -746,8 +746,8 @@ void main() {
       "id": "invitationId",
       "email": "info@apptivegrid.de",
       "_links": {
-        "self": {"href": "/invitation", "method": "get"}
-      }
+        "self": {"href": "/invitation", "method": "get"},
+      },
     };
 
     test('Single Invitation', () async {

@@ -9,8 +9,8 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  apptive_grid_core: ^1.6.0
-  apptive_grid_user_management: ^1.4.2
+  apptive_grid_core: ^1.7.0
+  apptive_grid_user_management: ^1.4.3
   apptive_grid_theme: ^1.2.0
   flutter:
     sdk: flutter
@@ -22,7 +22,10 @@ dependencies:
   zweidenker_heinzelmen: ^1.2.0
 
 dev_dependencies:
-  alchemist: ^0.6.0
+  alchemist:
+    git:
+      url: https://github.com/abausg/alchemist
+      ref: flutter-3-13
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1

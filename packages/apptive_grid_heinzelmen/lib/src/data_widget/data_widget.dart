@@ -103,7 +103,7 @@ class DataWidget extends StatelessWidget {
       return Wrap(
         children: [
           for (final value in data.value)
-            Chip(label: Text(value, style: textStyle))
+            Chip(label: Text(value, style: textStyle)),
         ],
       );
     }
@@ -302,9 +302,9 @@ class DataWidget extends StatelessWidget {
       );
     }
 
-    if (data is LookUpDataEntity) {
+    if (data.value is DataEntity) {
       return DataWidget(
-        data: (data as LookUpDataEntity).value!,
+        data: data.value!,
         textStyle: textStyle,
         emptyBuilder: emptyBuilder,
         linkLauncher: linkLauncher,
