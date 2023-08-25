@@ -1,3 +1,7 @@
+## 1.5.0
+
+ - **FEAT**: Support SumUp and Other DataEntities wrapping DataEntities in DataWidget (#25).
+
 ## 1.4.0
 
  - **FEAT**: DataWidget for DataType.lookUp (#24).
