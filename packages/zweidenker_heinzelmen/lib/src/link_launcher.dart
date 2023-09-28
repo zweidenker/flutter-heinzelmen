@@ -1,4 +1,5 @@
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -6,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 export 'package:flutter_web_browser/flutter_web_browser.dart'
     show CustomTabsOptions, SafariViewControllerOptions;
 
-/// Wrapper class for opening url's inside apps
+/// Wrapper class for opening urls inside apps
 class LinkLauncher {
   /// Creates a LinkLauncher
   const LinkLauncher();
@@ -41,7 +42,7 @@ class LinkLauncher {
       );
       // coverage:ignore-end
     } else {
-      if (openExternally || UniversalPlatform.isDesktopOrWeb) {
+      if (openExternally || kIsWeb || UniversalPlatform.isDesktopOrWeb) {
         /// Opens the url in a new tab in the browser
         await launchUrl(url, mode: LaunchMode.externalApplication);
       } else {
