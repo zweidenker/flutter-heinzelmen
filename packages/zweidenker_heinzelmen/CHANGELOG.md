@@ -1,3 +1,7 @@
+## 1.2.1
+
+ - **FIX**: Explicitly check for Flutter Web in Linklauncher (#26).
+
 ## 1.2.0
 
  - **FEAT**: AppVersion.offset (#21).
