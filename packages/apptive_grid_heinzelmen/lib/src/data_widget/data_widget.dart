@@ -196,7 +196,7 @@ class DataWidget extends StatelessWidget {
           textStyle: textStyle,
           emptyBuilder: emptyBuilder,
           linkLauncher: linkLauncher,
-        )
+        ),
     };
   }
 }
