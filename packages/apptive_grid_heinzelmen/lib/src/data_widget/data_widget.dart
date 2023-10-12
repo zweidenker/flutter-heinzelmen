@@ -196,11 +196,11 @@ class DataWidget extends StatelessWidget {
           break;
         case CreatedByType.formLink:
           label = createdBy.name;
-          avatar = const SizedBox(
+          avatar = SizedBox(
             width: 24,
             height: 24,
             child: DecoratedBox(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: ApptiveGridColors.form,
               ),
