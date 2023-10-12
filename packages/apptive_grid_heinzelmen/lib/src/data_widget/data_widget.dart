@@ -44,21 +44,17 @@ class DataWidget extends StatelessWidget {
           );
     }
     final locale = Localizations.localeOf(context).toString();
-    final dateFormat = DateFormat.yMd(locale);
-
-    final timeFormat = dateFormat.add_Hm();
-    final numberFormat = NumberFormat.decimalPattern(locale);
     return switch (data) {
       StringDataEntity() => Text(
           data.value,
           style: textStyle,
         ),
       DateTimeDataEntity() => Text(
-          timeFormat.format(data.value),
+          DateFormat.yMd(locale).add_Hm().format(data.value),
           style: textStyle,
         ),
       DateDataEntity() => Text(
-          dateFormat.format(data.value),
+          DateFormat.yMd(locale).format(data.value),
           style: textStyle,
         ),
       BooleanDataEntity() => IgnorePointer(
@@ -73,7 +69,7 @@ class DataWidget extends StatelessWidget {
           style: textStyle,
         ),
       DecimalDataEntity() => Text(
-          numberFormat.format(data.value),
+          NumberFormat.decimalPattern(locale).format(data.value),
           style: textStyle,
         ),
       EnumDataEntity() => Chip(label: Text(data.value, style: textStyle)),
@@ -210,10 +206,10 @@ class _CreatedBy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final label = switch (createdBy.type) {
-      CreatedByType.user => (createdBy.displayValue == null ||
-              createdBy.displayValue?.isNotEmpty == true)
-          ? 'ApptiveGrid-User'
-          : createdBy.displayValue!,
+      CreatedByType.user =>
+        (createdBy.displayValue == null || createdBy.displayValue!.isEmpty)
+            ? 'ApptiveGrid-User'
+            : createdBy.displayValue!,
       CreatedByType.apiCredentials || CreatedByType.formLink => createdBy.name,
     };
     final Widget avatar = switch (createdBy.type) {
