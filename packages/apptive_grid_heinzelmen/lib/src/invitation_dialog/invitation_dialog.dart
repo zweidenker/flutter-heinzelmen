@@ -237,27 +237,17 @@ class _InvitationDialogContent extends StatelessWidget {
     );
   }
 
-  String _roleTitle(Role role) {
-    switch (role) {
-      case Role.admin:
-        return localization.roleAdmin;
-      case Role.reader:
-        return localization.roleReader;
-      case Role.writer:
-        return localization.roleWriter;
-    }
-  }
+  String _roleTitle(Role role) => switch (role) {
+        Role.admin => localization.roleAdmin,
+        Role.reader => localization.roleReader,
+        Role.writer => localization.roleWriter
+      };
 
-  String _roleSubTitle(Role role) {
-    switch (role) {
-      case Role.admin:
-        return localization.roleDescriptionAdmin;
-      case Role.reader:
-        return localization.roleDescriptionReader;
-      case Role.writer:
-        return localization.roleDescriptionWriter;
-    }
-  }
+  String _roleSubTitle(Role role) => switch (role) {
+        Role.admin => localization.roleDescriptionAdmin,
+        Role.reader => localization.roleDescriptionReader,
+        Role.writer => localization.roleDescriptionWriter
+      };
 }
 
 class _InvitationSendButton extends StatefulWidget {

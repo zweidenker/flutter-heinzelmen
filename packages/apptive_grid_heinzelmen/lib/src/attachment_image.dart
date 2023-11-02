@@ -60,14 +60,11 @@ class AttachmentImage extends StatelessWidget {
       loadingWidget: largeThumbnail,
     );
 
-    switch (loadUntil) {
-      case LoadUntil.full:
-        return fullImage;
-      case LoadUntil.large:
-        return largeThumbnail ?? fullImage;
-      case LoadUntil.small:
-        return smallThumbnail ?? largeThumbnail ?? fullImage;
-    }
+    return switch (loadUntil) {
+      LoadUntil.full => fullImage,
+      LoadUntil.large => largeThumbnail ?? fullImage,
+      LoadUntil.small => smallThumbnail ?? largeThumbnail ?? fullImage
+    };
   }
 }
 

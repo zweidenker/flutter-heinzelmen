@@ -255,35 +255,20 @@ void main() {
                 columns: 4,
                 columnWidthBuilder: (_) => const FlexColumnWidth(),
                 children: DataType.values.map<Widget>((type) {
-                  late final DataEntity data;
-                  switch (type) {
-                    case DataType.text:
-                      data = StringDataEntity('String');
-                      break;
-                    case DataType.dateTime:
-                    case DataType.createdAt:
-                      data = DateTimeDataEntity(DateTime(2022, 7, 28, 10, 17));
-                      break;
-                    case DataType.date:
-                      data = DateDataEntity(DateTime(2022, 7, 28));
-                      break;
-                    case DataType.integer:
-                      data = IntegerDataEntity(42);
-                      break;
-                    case DataType.decimal:
-                      data = DecimalDataEntity(47.11);
-                      break;
-                    case DataType.checkbox:
-                      data = BooleanDataEntity(true);
-                      break;
-                    case DataType.singleSelect:
-                      data = EnumDataEntity(
+                  final data = switch (type) {
+                    DataType.text => StringDataEntity('String'),
+                    DataType.dateTime ||
+                    DataType.createdAt =>
+                      DateTimeDataEntity(DateTime(2022, 7, 28, 10, 17)),
+                    DataType.date => DateDataEntity(DateTime(2022, 7, 28)),
+                    DataType.integer => IntegerDataEntity(42),
+                    DataType.decimal => DecimalDataEntity(47.11),
+                    DataType.checkbox => BooleanDataEntity(true),
+                    DataType.singleSelect => EnumDataEntity(
                         value: 'Value',
                         options: {'Value', 'Other Value'},
-                      );
-                      break;
-                    case DataType.enumCollection:
-                      data = EnumCollectionDataEntity(
+                      ),
+                    DataType.enumCollection => EnumCollectionDataEntity(
                         value: {'Multiple', 'Values'},
                         options: {
                           'Multiple',
@@ -292,17 +277,13 @@ void main() {
                           'Be',
                           'Selected',
                         },
-                      );
-                      break;
-                    case DataType.crossReference:
-                      data = CrossReferenceDataEntity(
+                      ),
+                    DataType.crossReference => CrossReferenceDataEntity(
                         value: 'Value',
                         gridUri: Uri.parse('https://grid.uri'),
                         entityUri: Uri.parse('https://entity.uri'),
-                      );
-                      break;
-                    case DataType.attachment:
-                      data = AttachmentDataEntity([
+                      ),
+                    DataType.attachment => AttachmentDataEntity([
                         Attachment(
                           name: 'Attachment',
                           url: Uri.parse('https://attachment.uri'),
@@ -312,18 +293,15 @@ void main() {
                               Uri.parse('https://attachment.uri/large'),
                           type: 'image/png',
                         ),
-                      ]);
-                      break;
-                    case DataType.geolocation:
-                      data = GeolocationDataEntity(
+                      ]),
+                    DataType.geolocation => GeolocationDataEntity(
                         const Geolocation(
                           latitude: 47.1,
                           longitude: 11.1,
                         ),
-                      );
-                      break;
-                    case DataType.multiCrossReference:
-                      data = MultiCrossReferenceDataEntity(
+                      ),
+                    DataType.multiCrossReference =>
+                      MultiCrossReferenceDataEntity(
                         gridUri: Uri.parse('https://grid.uri'),
                         references: [
                           CrossReferenceDataEntity(
@@ -337,57 +315,40 @@ void main() {
                             entityUri: Uri.parse('https://entity.uri/other'),
                           ),
                         ],
-                      );
-                      break;
-                    case DataType.createdBy:
-                      data = CreatedByDataEntity(
+                      ),
+                    DataType.createdBy => CreatedByDataEntity(
                         const CreatedBy(
                           type: CreatedByType.user,
                           displayValue: 'User',
                           id: 'userId',
                         ),
-                      );
-                      break;
-                    case DataType.user:
-                      data = UserDataEntity(
+                      ),
+                    DataType.user => UserDataEntity(
                         DataUser(
                           displayValue: 'Jane Doe',
                           uri: Uri.parse('/users/userId'),
                         ),
-                      );
-                      break;
-                    case DataType.currency:
-                      data = CurrencyDataEntity(currency: 'EUR', value: 47.11);
-                      break;
-                    case DataType.uri:
-                      data = UriDataEntity(Uri.parse('https://uri.uri'));
-                      break;
-                    case DataType.phoneNumber:
-                      data = PhoneNumberDataEntity('+12345678');
-                      break;
-                    case DataType.email:
-                      data = PhoneNumberDataEntity('test@test.de');
-                      break;
-                    case DataType.signature:
-                      data = SignatureDataEntity(
+                      ),
+                    DataType.currency =>
+                      CurrencyDataEntity(currency: 'EUR', value: 47.11),
+                    DataType.uri => UriDataEntity(Uri.parse('https://uri.uri')),
+                    DataType.phoneNumber => PhoneNumberDataEntity('+12345678'),
+                    DataType.email => PhoneNumberDataEntity('test@test.de'),
+                    DataType.signature => SignatureDataEntity(
                         // Using png here, since FlutterSvg doesn't have a fallback value and always throws an error
                         Attachment(
                           name: 'Attachment',
                           url: Uri.parse('https://attachment.svg'),
                           type: 'image/png',
                         ),
-                      );
-
-                      break;
-                    case DataType.lookUp:
-                      data = LookUpDataEntity(StringDataEntity('Look Up'));
-
-                      break;
-                    case DataType.reducedLookUp:
-                      data = ReducedLookUpDataEntity(IntegerDataEntity(3));
-
-                      break;
-                  }
+                      ),
+                    DataType.lookUp =>
+                      LookUpDataEntity(StringDataEntity('Look Up')),
+                    DataType.reducedLookUp =>
+                      ReducedLookUpDataEntity(IntegerDataEntity(3)),
+                    DataType.formula =>
+                      FormulaDataEntity(value: IntegerDataEntity(3))
+                  } as DataEntity;
 
                   return GoldenTestScenario(
                     name: type.backendName,
@@ -631,23 +592,4 @@ void main() {
       expect(find.text('Nested LookUp'), findsOneWidget);
     });
   });
-
-  testWidgets('Unknown Entity Returns Value', (tester) async {
-    final target = MaterialApp(
-      home: DataWidget(
-        data: _UnknownDataEntity('Unknown Entity Type'),
-      ),
-    );
-
-    await tester.pumpWidget(target);
-    await tester.pumpAndSettle();
-    expect(find.text('Unknown Entity Type'), findsOneWidget);
-  });
-}
-
-class _UnknownDataEntity extends DataEntity<String, String> {
-  _UnknownDataEntity([super.value]);
-
-  @override
-  String? get schemaValue => value;
 }
