@@ -1,3 +1,9 @@
+## 2.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **REFACTOR**: Migrate to Dart 3 (#27).
+
 ## 1.2.1
 
  - **FIX**: Explicitly check for Flutter Web in Linklauncher (#26).

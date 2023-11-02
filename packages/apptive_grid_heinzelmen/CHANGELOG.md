@@ -1,3 +1,9 @@
+## 2.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **REFACTOR**: Migrate to Dart 3 (#27).
+
 ## 1.5.1
 
  - Update a dependency to the latest release.

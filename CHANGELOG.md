@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-11-02
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`apptive_grid_heinzelmen` - `v2.0.0`](#apptive_grid_heinzelmen---v200)
+ - [`zweidenker_heinzelmen` - `v2.0.0`](#zweidenker_heinzelmen---v200)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `apptive_grid_heinzelmen` - `v2.0.0`
+
+ - **BREAKING** **REFACTOR**: Migrate to Dart 3 (#27).
+
+#### `zweidenker_heinzelmen` - `v2.0.0`
+
+ - **BREAKING** **REFACTOR**: Migrate to Dart 3 (#27).
+
+
 ## 2023-09-28
 
 ### Changes
