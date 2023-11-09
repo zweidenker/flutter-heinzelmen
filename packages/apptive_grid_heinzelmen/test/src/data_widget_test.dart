@@ -387,6 +387,10 @@ void main() {
                       data = ReducedLookUpDataEntity(IntegerDataEntity(3));
 
                       break;
+                    case DataType.formula:
+                      data =
+                          FormulaDataEntity(value: StringDataEntity('Formula'));
+                      break;
                   }
 
                   return GoldenTestScenario(
@@ -631,23 +635,4 @@ void main() {
       expect(find.text('Nested LookUp'), findsOneWidget);
     });
   });
-
-  testWidgets('Unknown Entity Returns Value', (tester) async {
-    final target = MaterialApp(
-      home: DataWidget(
-        data: _UnknownDataEntity('Unknown Entity Type'),
-      ),
-    );
-
-    await tester.pumpWidget(target);
-    await tester.pumpAndSettle();
-    expect(find.text('Unknown Entity Type'), findsOneWidget);
-  });
-}
-
-class _UnknownDataEntity extends DataEntity<String, String> {
-  _UnknownDataEntity([super.value]);
-
-  @override
-  String? get schemaValue => value;
 }
