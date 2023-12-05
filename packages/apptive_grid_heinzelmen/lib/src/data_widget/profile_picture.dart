@@ -71,3 +71,16 @@ class ProfilePicture extends StatelessWidget {
     );
   }
 }
+
+/// Ignoring Function useful for using `apptive_grid_error_reporting`
+/// If this is used inside the `ignoreError` callback of `ApptiveGridErrorReporting`
+/// this will not report FlutterError that are reported when requesting ProfilePicture from Users that do not have a Profile Picture set
+bool ignoreNoProfilePictureError(dynamic error) {
+  if (error is NetworkImageLoadException &&
+      error.uri.host ==
+          'apptiveavatarupload-apptiveavataruploadbucket-17hw58ak4gvs6.s3.eu-central-1.amazonaws.com' &&
+      error.statusCode == 403) {
+    return true;
+  }
+  return false;
+}
