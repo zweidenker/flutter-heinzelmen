@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-12-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`apptive_grid_heinzelmen` - `v2.1.0`](#apptive_grid_heinzelmen---v210)
+
+---
+
+#### `apptive_grid_heinzelmen` - `v2.1.0`
+
+ - **FEAT**: Add `ignoreNoProfilePictureError` to Ignore Errors in apptive_grid_error_reporting (#30).
+
+
 ## 2023-11-02
 
 ### Changes
