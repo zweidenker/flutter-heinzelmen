@@ -12,8 +12,9 @@ void main() {
   group('Environment Change Provider', () {
     test('Initial configuration from stage', () {
       final envProvider = EnvironmentChangeNotifier(
-          environment: ApptiveGridEnvironment.beta,
-          availableEnvironments: [ApptiveGridEnvironment.beta]);
+        environment: ApptiveGridEnvironment.beta,
+        availableEnvironments: [ApptiveGridEnvironment.beta],
+      );
 
       expect(envProvider.environment, equals(ApptiveGridEnvironment.beta));
       expect(
