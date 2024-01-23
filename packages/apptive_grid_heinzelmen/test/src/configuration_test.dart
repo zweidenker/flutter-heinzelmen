@@ -9,6 +9,120 @@ import 'package:golden_toolkit/golden_toolkit.dart' show loadAppFonts;
 import 'package:provider/provider.dart';
 
 void main() {
+  group('Environment Change Provider', () {
+    test('Initial configuration from stage', () {
+      final envProvider = EnvironmentChangeNotifier(
+          environment: ApptiveGridEnvironment.beta,
+          availableEnvironments: [ApptiveGridEnvironment.beta]);
+
+      expect(envProvider.environment, equals(ApptiveGridEnvironment.beta));
+      expect(
+        envProvider.availableEnvironments,
+        equals([ApptiveGridEnvironment.beta]),
+      );
+    });
+
+    test('Default configuration is production', () {
+      final envProvider = EnvironmentChangeNotifier(
+        availableEnvironments: [
+          ApptiveGridEnvironment.production,
+          ApptiveGridEnvironment.beta,
+        ],
+      );
+
+      expect(
+        envProvider.environment,
+        equals(ApptiveGridEnvironment.production),
+      );
+      expect(
+        envProvider.availableEnvironments,
+        equals(
+          [ApptiveGridEnvironment.production, ApptiveGridEnvironment.beta],
+        ),
+      );
+    });
+
+    group('Update Environment', () {
+      late EnvironmentChangeNotifier envProvider;
+
+      setUp(() {
+        envProvider = EnvironmentChangeNotifier(
+          availableEnvironments: [
+            ApptiveGridEnvironment.production,
+            ApptiveGridEnvironment.beta,
+          ],
+        );
+      });
+
+      tearDown(() {
+        envProvider.dispose();
+      });
+
+      test('Updating environment updates notifies', () async {
+        int listenerCallCount = 0;
+        final completer = Completer();
+
+        envProvider.addListener(() {
+          listenerCallCount++;
+          completer.complete();
+        });
+
+        expect(
+          envProvider.environment,
+          equals(ApptiveGridEnvironment.production),
+        );
+
+        envProvider.environment = ApptiveGridEnvironment.beta;
+        await completer.future;
+
+        expect(envProvider.environment, equals(ApptiveGridEnvironment.beta));
+        expect(listenerCallCount, 1);
+      });
+
+      test('Same environment does nothing', () async {
+        int listenerCallCount = 0;
+
+        envProvider.addListener(() {
+          listenerCallCount++;
+        });
+
+        expect(
+          envProvider.environment,
+          equals(ApptiveGridEnvironment.production),
+        );
+
+        envProvider.environment = ApptiveGridEnvironment.production;
+
+        expect(
+          envProvider.environment,
+          equals(ApptiveGridEnvironment.production),
+        );
+        expect(listenerCallCount, 0);
+      });
+
+      test('Unknown environment does nothing', () async {
+        int listenerCallCount = 0;
+
+        envProvider.addListener(() {
+          listenerCallCount++;
+        });
+
+        expect(
+          envProvider.environment,
+          equals(ApptiveGridEnvironment.production),
+        );
+
+        envProvider.environment = ApptiveGridEnvironment.alpha;
+
+        expect(
+          envProvider.environment,
+          equals(ApptiveGridEnvironment.production),
+        );
+        expect(listenerCallCount, 0);
+      });
+    });
+  });
+
   group('Configuration Provider', () {
     test('Initial configuration from stage', () {
       final configProvider = ConfigurationChangeNotifier(
@@ -175,7 +289,7 @@ void main() {
       target = Material(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: ChangeNotifierProvider(
+          home: ChangeNotifierProvider<EnvironmentChangeNotifier>(
             create: (_) => configProvider,
             builder: (_, __) => EnvironmentSwitcher(
               onChangeEnvironment: (env) async {
