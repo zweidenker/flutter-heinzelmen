@@ -20,18 +20,27 @@ class ProfilePicture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) {
+      builder: (layoutContext, constraints) {
         final size = min(constraints.maxWidth, constraints.maxHeight);
         return ClipRRect(
           borderRadius: BorderRadius.circular(size),
-          child: Image.network(
-            'https://apptiveavatarupload-apptiveavataruploadbucket-17hw58ak4gvs6.s3.eu-central-1.amazonaws.com/$userId.jpg',
-            fit: BoxFit.cover,
-            frameBuilder: (frameContext, child, _, __) {
-              return _initialsBuilder(frameContext, child);
-            },
-            errorBuilder: (errorContext, _, __) {
-              return _initialsBuilder(errorContext);
+          child: Builder(
+            builder: (builderContext) {
+              // TODO: Remove catch once this issue is fixed on stable https://github.com/flutter/flutter/issues/107416
+              try {
+                return Image.network(
+                  'https://apptiveavatarupload-apptiveavataruploadbucket-17hw58ak4gvs6.s3.eu-central-1.amazonaws.com/$userId.jpg',
+                  fit: BoxFit.cover,
+                  frameBuilder: (frameContext, child, _, __) {
+                    return _initialsBuilder(frameContext, child);
+                  },
+                  errorBuilder: (errorContext, _, __) {
+                    return _initialsBuilder(errorContext);
+                  },
+                );
+              } catch (_) {
+                return _initialsBuilder(builderContext);
+              }
             },
           ),
         );
