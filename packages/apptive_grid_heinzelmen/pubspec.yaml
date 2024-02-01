@@ -22,7 +22,10 @@ dependencies:
   zweidenker_heinzelmen: ^2.0.0
 
 dev_dependencies:
-  alchemist: ^0.7.0
+  alchemist: 
+    git:
+      url: https://github.com/AbausG/alchemist
+      ref: fixes
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.3
