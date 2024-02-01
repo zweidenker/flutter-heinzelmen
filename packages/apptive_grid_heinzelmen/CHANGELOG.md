@@ -1,3 +1,9 @@
+## 3.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Extract env switching from ConfigurationChangeNotifier into new class (#32).
+
 ## 2.1.0
 
  - **FEAT**: Add `ignoreNoProfilePictureError` to Ignore Errors in apptive_grid_error_reporting (#30).

@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-02-01
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`apptive_grid_heinzelmen` - `v3.0.0`](#apptive_grid_heinzelmen---v300)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `apptive_grid_heinzelmen` - `v3.0.0`
+
+ - **BREAKING** **FEAT**: Extract env switching from ConfigurationChangeNotifier into new class (#32).
+
+
+## 2024-02-01
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`apptive_grid_heinzelmen` - `v3.0.0`](#apptive_grid_heinzelmen---v300)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `apptive_grid_heinzelmen` - `v3.0.0`
+
+ - **BREAKING** **FEAT**: Extract env switching from ConfigurationChangeNotifier into new class (#32).
+
+
 ## 2023-12-05
 
 ### Changes
