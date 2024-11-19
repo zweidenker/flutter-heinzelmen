@@ -5,6 +5,10 @@ packages:
 
 scripts:
 
+  setup:
+    run: |
+      echo "no setup needed, skipping"
+
   lint:all:
     run: |
       melos run lint:analyze && melos run lint:pub --no-select && melos run lint:format
