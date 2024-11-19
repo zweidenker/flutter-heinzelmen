@@ -349,8 +349,17 @@ void main() {
                       ReducedLookUpDataEntity(IntegerDataEntity(3)),
                     DataType.formula =>
                       FormulaDataEntity(value: IntegerDataEntity(3)),
-                    DataType.resource =>
-                      ResourceDataEntity(DataResource(href: ApptiveLink(uri: Uri.parse('test/uri'), method: 'GET'), type: DataResourceType.spreadsheetView, name: 'testResource', metaType: DataResourceMetaType.view))
+                    DataType.resource => ResourceDataEntity(
+                        DataResource(
+                          href: ApptiveLink(
+                            uri: Uri.parse('test/uri'),
+                            method: 'GET',
+                          ),
+                          type: DataResourceType.spreadsheetView,
+                          name: 'testResource',
+                          metaType: DataResourceMetaType.view,
+                        ),
+                      )
                   } as DataEntity;
 
                   return GoldenTestScenario(
