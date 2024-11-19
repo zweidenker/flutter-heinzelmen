@@ -257,6 +257,7 @@ void main() {
                 children: DataType.values.map<Widget>((type) {
                   final data = switch (type) {
                     DataType.text => StringDataEntity('String'),
+                    DataType.richText => StringDataEntity('Rich String'),
                     DataType.dateTime ||
                     DataType.createdAt =>
                       DateTimeDataEntity(DateTime(2022, 7, 28, 10, 17)),
@@ -347,7 +348,9 @@ void main() {
                     DataType.reducedLookUp =>
                       ReducedLookUpDataEntity(IntegerDataEntity(3)),
                     DataType.formula =>
-                      FormulaDataEntity(value: IntegerDataEntity(3))
+                      FormulaDataEntity(value: IntegerDataEntity(3)),
+                    DataType.resource =>
+                      ResourceDataEntity(DataResource(href: ApptiveLink(uri: Uri.parse('test/uri'), method: 'GET'), type: DataResourceType.spreadsheetView, name: 'testResource', metaType: DataResourceMetaType.view))
                   } as DataEntity;
 
                   return GoldenTestScenario(
