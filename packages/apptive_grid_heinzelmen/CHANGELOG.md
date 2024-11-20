@@ -1,3 +1,7 @@
+## 3.0.1
+
+ - **FEAT**: Adding RichText and basic Resource type support
+
 ## 3.0.0
 
 > Note: This release has breaking changes.

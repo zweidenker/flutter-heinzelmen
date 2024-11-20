@@ -193,6 +193,10 @@ class DataWidget extends StatelessWidget {
           emptyBuilder: emptyBuilder,
           linkLauncher: linkLauncher,
         ),
+      ResourceDataEntity() => Text(
+          data.value.name,
+          style: textStyle,
+        ),
     };
   }
 }
