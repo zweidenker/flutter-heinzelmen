@@ -223,43 +223,43 @@ HttpClient _createHttpClient(Map<Uri, Uint8List>? images) {
     return request;
   });
 
-  HttpClientResponse _createResponse(Uri uri) {
-  final response = _MockHttpClientResponse();
-  final headers = _MockHttpHeaders();
-  final data = images?[uri] ?? fallbackImage;
+  HttpClientResponse createResponse(Uri uri) {
+    final response = _MockHttpClientResponse();
+    final headers = _MockHttpHeaders();
+    final data = images?[uri] ?? fallbackImage;
 
-  when(() => response.headers).thenReturn(headers);
-  when(() => response.contentLength).thenReturn(data.length);
-  when(() => response.statusCode).thenReturn(HttpStatus.ok);
-  when(() => response.isRedirect).thenReturn(false);
-  when(() => response.redirects).thenReturn([]);
-  when(() => response.persistentConnection).thenReturn(false);
-  when(() => response.reasonPhrase).thenReturn('OK');
-  when(
-    () => response.compressionState,
-  ).thenReturn(HttpClientResponseCompressionState.notCompressed);
-  when(
-    () => response.handleError(any(), test: any(named: 'test')),
-  ).thenAnswer((_) => Stream<List<int>>.value(data));
-  when(
-    () => response.listen(
-      any(),
-      onDone: any(named: 'onDone'),
-      onError: any(named: 'onError'),
-      cancelOnError: any(named: 'cancelOnError'),
-    ),
-  ).thenAnswer((invocation) {
-    final onData =
-        invocation.positionalArguments.first as void Function(List<int>);
-    final onDone = invocation.namedArguments[#onDone] as void Function()?;
-    return Stream<List<int>>.fromIterable(
-      <List<int>>[data],
-    ).listen(onData, onDone: onDone);
-  });
-  return response;
-}
+    when(() => response.headers).thenReturn(headers);
+    when(() => response.contentLength).thenReturn(data.length);
+    when(() => response.statusCode).thenReturn(HttpStatus.ok);
+    when(() => response.isRedirect).thenReturn(false);
+    when(() => response.redirects).thenReturn([]);
+    when(() => response.persistentConnection).thenReturn(false);
+    when(() => response.reasonPhrase).thenReturn('OK');
+    when(
+      () => response.compressionState,
+    ).thenReturn(HttpClientResponseCompressionState.notCompressed);
+    when(
+      () => response.handleError(any(), test: any(named: 'test')),
+    ).thenAnswer((_) => Stream<List<int>>.value(data));
+    when(
+      () => response.listen(
+        any(),
+        onDone: any(named: 'onDone'),
+        onError: any(named: 'onError'),
+        cancelOnError: any(named: 'cancelOnError'),
+      ),
+    ).thenAnswer((invocation) {
+      final onData =
+          invocation.positionalArguments.first as void Function(List<int>);
+      final onDone = invocation.namedArguments[#onDone] as void Function()?;
+      return Stream<List<int>>.fromIterable(
+        <List<int>>[data],
+      ).listen(onData, onDone: onDone);
+    });
+    return response;
+  }
 
-  HttpClientRequest _createRequest(Uri uri) {
+  HttpClientRequest createRequest(Uri uri) {
     final request = _MockHttpClientRequest();
     final headers = _MockHttpHeaders();
 
@@ -275,15 +275,13 @@ HttpClient _createHttpClient(Map<Uri, Uint8List>? images) {
     });
     when(
       request.close,
-    ).thenAnswer((_) async => _createResponse(uri));
+    ).thenAnswer((_) async => createResponse(uri));
 
     return request;
   }
 
-  
-
   when(() => client.openUrl(any(), any())).thenAnswer(
-    (invokation) async => _createRequest(
+    (invokation) async => createRequest(
       invokation.positionalArguments.last as Uri,
     ),
   );
