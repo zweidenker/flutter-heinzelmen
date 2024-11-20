@@ -170,6 +170,7 @@ class _MockHttpClient extends Mock implements HttpClient {
   _MockHttpClient() {
     registerFallbackValue((List<int> _) {});
     registerFallbackValue(Uri());
+    registerFallbackValue(Stream<List<int>>.fromIterable([]));
   }
 
   @override
@@ -221,5 +222,71 @@ HttpClient _createHttpClient(Map<Uri, Uint8List>? images) {
 
     return request;
   });
+
+  HttpClientResponse _createResponse(Uri uri) {
+  final response = _MockHttpClientResponse();
+  final headers = _MockHttpHeaders();
+  final data = images?[uri] ?? fallbackImage;
+
+  when(() => response.headers).thenReturn(headers);
+  when(() => response.contentLength).thenReturn(data.length);
+  when(() => response.statusCode).thenReturn(HttpStatus.ok);
+  when(() => response.isRedirect).thenReturn(false);
+  when(() => response.redirects).thenReturn([]);
+  when(() => response.persistentConnection).thenReturn(false);
+  when(() => response.reasonPhrase).thenReturn('OK');
+  when(
+    () => response.compressionState,
+  ).thenReturn(HttpClientResponseCompressionState.notCompressed);
+  when(
+    () => response.handleError(any(), test: any(named: 'test')),
+  ).thenAnswer((_) => Stream<List<int>>.value(data));
+  when(
+    () => response.listen(
+      any(),
+      onDone: any(named: 'onDone'),
+      onError: any(named: 'onError'),
+      cancelOnError: any(named: 'cancelOnError'),
+    ),
+  ).thenAnswer((invocation) {
+    final onData =
+        invocation.positionalArguments.first as void Function(List<int>);
+    final onDone = invocation.namedArguments[#onDone] as void Function()?;
+    return Stream<List<int>>.fromIterable(
+      <List<int>>[data],
+    ).listen(onData, onDone: onDone);
+  });
+  return response;
+}
+
+  HttpClientRequest _createRequest(Uri uri) {
+    final request = _MockHttpClientRequest();
+    final headers = _MockHttpHeaders();
+
+    when(() => request.headers).thenReturn(headers);
+    when(
+      () => request.addStream(any()),
+    ).thenAnswer((invocation) {
+      final stream = invocation.positionalArguments.first as Stream<List<int>>;
+      return stream.fold<List<int>>(
+        <int>[],
+        (previous, element) => previous..addAll(element),
+      );
+    });
+    when(
+      request.close,
+    ).thenAnswer((_) async => _createResponse(uri));
+
+    return request;
+  }
+
+  
+
+  when(() => client.openUrl(any(), any())).thenAnswer(
+    (invokation) async => _createRequest(
+      invokation.positionalArguments.last as Uri,
+    ),
+  );
+
   return client;
 }
