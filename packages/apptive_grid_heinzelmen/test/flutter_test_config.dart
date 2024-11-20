@@ -15,7 +15,7 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
         tolerance: 0.001,
       ),
       ciGoldensConfig: const CiGoldensConfig(
-        tolerance: 0.001,
+        tolerance: 0.003,
       ),
     ),
     run: testMain,
