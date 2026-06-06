@@ -18,7 +18,8 @@ void main() {
     });
     group('Version Number Widget', () {
       testWidgets('Shows Sized Box while loading', (tester) async {
-        await tester.pumpWidget(const AppVersion());
+        // ignore: prefer_const_constructors
+        await tester.pumpWidget(AppVersion());
 
         expect(find.byType(SizedBox), findsOneWidget);
       });

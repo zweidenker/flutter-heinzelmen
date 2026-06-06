@@ -44,7 +44,7 @@ Future<T> _customParser<T>(http.Response response) async {
   return parser(jsonList);
 }
 
-List<T> _listParser<T>(list) => list.map<T>(_parsingMap[T]).toList();
+List<T> _listParser<T>(dynamic list) => list.map<T>(_parsingMap[T]).toList();
 
 final _parsingMap = <Type, dynamic Function(dynamic)>{
   Space: (json) => Space.fromJson(json),

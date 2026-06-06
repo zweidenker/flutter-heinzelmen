@@ -17,7 +17,7 @@ export 'package:apptive_grid_heinzelmen/src/invitation_dialog/invitation_localiz
 /// This can be prevented by using a custom [localization]
 ///
 /// It is also possible to define which [roles] can be added. This can't be empty. Also if it only contains one [Role] the selection box is not shown
-/// This will return a Future<bool> which will return if one or more invites where send
+/// This will return a `Future<bool>` which will return if one or more invites where send
 Future<bool> showSpaceInvitationDialog({
   required BuildContext context,
   required Space space,
