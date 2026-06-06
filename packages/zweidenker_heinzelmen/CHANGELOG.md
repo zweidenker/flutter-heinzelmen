@@ -1,3 +1,7 @@
+## 2.1.0
+
+ - **FEAT**: Upgrade dependencies for Flutter 3.44 compatibility (package_info_plus ^10.1.0, flutter_lints ^6.0.0).
+
 ## 2.0.0
 
 > Note: This release has breaking changes.
