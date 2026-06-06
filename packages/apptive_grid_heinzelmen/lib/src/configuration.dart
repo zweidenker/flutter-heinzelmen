@@ -72,10 +72,10 @@ class ConfigurationChangeNotifier<T> extends EnvironmentChangeNotifier {
 }
 
 /// A [DropdownButton] to switch the [ApptiveGridEnvironment]
-/// Note this requires that there is a [Provider]<EnvironmentChangeNotifier> in the Widget Tree
+/// Note this requires that there is a `Provider<EnvironmentChangeNotifier>` in the Widget Tree
 class EnvironmentSwitcher extends StatelessWidget {
   /// Creates the Dropdown Button
-  /// Note this requires that there is a [Provider]<ConfigurationChangeNotifier> in the Widget Tree
+  /// Note this requires that there is a `Provider<ConfigurationChangeNotifier>` in the Widget Tree
   const EnvironmentSwitcher({super.key, this.onChangeEnvironment});
 
   /// Called when the environment changed to [environment] to perform additional actions

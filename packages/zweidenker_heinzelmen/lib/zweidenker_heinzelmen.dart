@@ -1,4 +1,3 @@
-library zweidenker_heinzelmen;
 
 export 'package:zweidenker_heinzelmen/src/app_version.dart';
 export 'package:zweidenker_heinzelmen/src/feature_toggle.dart';
