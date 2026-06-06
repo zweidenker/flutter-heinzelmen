@@ -12,11 +12,8 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
     config: AlchemistConfig(
       platformGoldensConfig: PlatformGoldensConfig(
         enabled: !isRunningInCi,
-        tolerance: 0.001,
       ),
-      ciGoldensConfig: const CiGoldensConfig(
-        tolerance: 0.003,
-      ),
+      ciGoldensConfig: const CiGoldensConfig(),
     ),
     run: testMain,
   );
