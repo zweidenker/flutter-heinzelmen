@@ -1,3 +1,7 @@
+## 3.2.0
+
+ - **FEAT**: Display `AddressDataEntity` in `DataWidget` as `Address.displayString` (#35). Requires `apptive_grid_core` ^2.3.0, whose sealed `DataEntity` gained the address subclass.
+
 ## 3.1.0
 
  - **FEAT**: Upgrade dependencies for Flutter 3.44 compatibility (intl ^0.20.2, flutter_lints ^6.0.0, alchemist ^0.14.0).
