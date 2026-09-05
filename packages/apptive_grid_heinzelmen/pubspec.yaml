@@ -9,7 +9,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  apptive_grid_core: ^2.1.5
+  apptive_grid_core: ^2.3.0
   apptive_grid_user_management: ^2.0.3
   apptive_grid_theme: ^1.3.0
   flutter:

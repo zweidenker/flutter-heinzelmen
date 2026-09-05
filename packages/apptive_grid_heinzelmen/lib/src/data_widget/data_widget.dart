@@ -110,6 +110,10 @@ class DataWidget extends StatelessWidget {
           [data.value.latitude, data.value.longitude].join(', '),
           style: textStyle,
         ),
+      AddressDataEntity() => Text(
+          data.value.displayString,
+          style: textStyle,
+        ),
       MultiCrossReferenceDataEntity() => Wrap(
           children: [
             for (final reference in data.value)
