@@ -301,6 +301,14 @@ void main() {
                           longitude: 11.1,
                         ),
                       ),
+                    DataType.address => AddressDataEntity(
+                        const Address(
+                          line1: 'Musterstraße 1',
+                          postCode: '12345',
+                          city: 'Berlin',
+                          country: 'Deutschland',
+                        ),
+                      ),
                     DataType.multiCrossReference =>
                       MultiCrossReferenceDataEntity(
                         gridUri: Uri.parse('https://grid.uri'),
